@@ -3,7 +3,9 @@
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import localFont from "next/font/local";
-import { Suspense, useMemo } from "react";
+import { Suspense, useMemo, useEffect, useState } from "react";
+import LogoLoop from "./components/LogoLoop";
+import { Color } from "three";
 
 const chocobold = localFont({
   src: "./fonts/Chocobold.ttf",
@@ -25,7 +27,37 @@ const CurvedLoop = dynamic(() => import("./components/CurvedLoop"), {
   ssr: false,
 });
 
+const GooeyNav = dynamic(() => import("./components/GooeyNav"), {
+  ssr: false,
+});
+
+const techLogos = [
+  { src: "/images/logo/aarti.png", alt: "Aarti" },
+  { src: "/images/logo/onsei.png", alt: "Onsei" },
+  { src: "/images/logo/judydoll.png", alt: "judydoll" },
+  { src: "/images/logo/hairum.png", alt: "Hairum" },
+  { src: "/images/logo/Sea Makeup.png", alt: "Sea Makeup" },
+  { src: "/images/logo/acnaway.png", alt: "acnaway" },
+  { src: "/images/logo/mr.png", alt: "mr" },
+  { src: "/images/logo/w.png", alt: "w" },
+  { src: "/images/logo/s.png", alt: "s" },
+  { src: "/images/logo/b.png", alt: "b" },
+];
+
 export default function Home() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const items = [
+    { label: "Home", href: "#home" },
+    { label: "About", href: "#about" },
+    { label: "Portfolio", href: "#portfolio" },
+    { label: "Contact", href: "#contact" },
+  ];
+
   const liquidProps = useMemo(
     () => ({
       colors: ["#5227FF", "#FF9FFC", "#B19EEF"],
@@ -46,53 +78,127 @@ export default function Home() {
 
   return (
     <main
-      className={`relative h-screen w-full overflow-hidden bg-[#3b5ba5] text-white ${chocobold.className} antialiased`}
+      className={`relative w-full bg-[#3b5ba5] text-white ${chocobold.className} antialiased`}
     >
-      <div className="fixed inset-0 z-0 opacity-20">
-        <Suspense fallback={null}>
-          <LiquidEther {...liquidProps} />
-        </Suspense>
-      </div>
+      {/* 1. NAVIGATION SECTION */}
+      {mounted && (
+        <nav className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 pointer-events-auto">
+          <div className="max-w-fit bg-white/10 backdrop-blur-lg border border-white/20 rounded-full px-2 py-1 shadow-lg">
+            <GooeyNav items={items} />
+          </div>
+        </nav>
+      )}
 
-      <div className="relative z-10 h-full w-full flex flex-col justify-center items-center select-none pointer-events-none">
-        <h1 className="flex flex-col leading-[0.7] tracking-[-0.05em] uppercase text-center">
-          <span className="text-[22vw] md:text-[200px] opacity-90">
-            Graphic
-          </span>
-          <span className="text-[22vw] md:text-[200px] opacity-90">
-            Designer
-          </span>
-        </h1>
-      </div>
+      {/* 2. HERO SECTION */}
+      <section
+        id="home"
+        className="relative h-screen w-full overflow-hidden flex flex-col justify-center items-center"
+      >
+        <div className="fixed inset-0 z-0 opacity-20 pointer-events-none">
+          <Suspense fallback={null}>
+            <LiquidEther {...liquidProps} />
+          </Suspense>
+        </div>
 
-      <div className="absolute inset-x-0 bottom-[81px] md:bottom-[150px] z-20 pointer-events-none">
-        <Suspense fallback={null}>
-          <CurvedLoop
-            marqueeText="Portfolio ✦ Rasya ✦ Portfolio ✦ Rasya ✦ Portfolio ✦ Rasya ✦ Portfolio ✦ Rasya ✦"
-            speed={1.5}
-            curveAmount={12}
-            direction="right"
-            interactive={false}
-            className={portfolioTextClass}
-          />
-        </Suspense>
-      </div>
+        <div className="relative z-10 w-full flex flex-col justify-center items-center select-none pointer-events-none">
+          <h1 className="flex flex-col leading-[0.7] tracking-[-0.05em] uppercase text-center">
+            <span className="text-[22vw] md:text-[200px] opacity-90">
+              Graphic
+            </span>
+            <span className="text-[22vw] md:text-[200px] opacity-90">
+              Designer
+            </span>
+          </h1>
+        </div>
 
-      <div className="absolute inset-0 z-30 flex items-end justify-center pointer-events-none">
-        <div className="relative w-full h-[45vh] md:w-[600px] md:h-[75vh]">
-          <Image
-            src="/images/picturestar.png"
-            alt="Rasya Portfolio"
-            fill
-            sizes="(max-width: 768px) 100vw, 600px"
-            className="object-contain object-bottom"
-            style={{ filter: "drop-shadow(0 20px 30px rgba(0,0,0,0.5))" }}
-            priority
+        <div className="absolute inset-x-0 bottom-[90px] md:bottom-[150px] z-20 pointer-events-none">
+          <Suspense fallback={null}>
+            <CurvedLoop
+              marqueeText="Portfolio ✦ Rasya ✦ Portfolio ✦ Rasya ✦ Portfolio ✦ Rasya ✦"
+              speed={1.5}
+              curveAmount={12}
+              direction="right"
+              interactive={false}
+              className={portfolioTextClass}
+            />
+          </Suspense>
+        </div>
+
+        <div className="absolute inset-0 z-30 flex items-end justify-center pointer-events-none">
+          <div className="relative w-full h-[50vh] md:w-[500px] md:h-[70vh]">
+            <Image
+              src="/images/picturestar.png"
+              alt="Rasya Portfolio"
+              fill
+              sizes="(max-width: 768px) 100vw, 600px"
+              className="object-contain object-bottom"
+              style={{ filter: "drop-shadow(0 20px 30px rgba(0,0,0,0.5))" }}
+              priority
+            />
+          </div>
+        </div>
+
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#3b5ba5] to-transparent z-15 pointer-events-none" />
+      </section>
+
+      {/* 3. ABOUT SECTION */}
+      <section
+        id="about"
+        className="relative min-h-screen w-full bg-[#3b5ba5] flex flex-col items-center justify-center p-10 z-40"
+      >
+        <div className="max-w-4xl text-center mb-16">
+          <h2 className="text-5xl mb-8 uppercase">About Me</h2>
+          <p className="text-xl leading-relaxed font-sans opacity-80">
+            Insert your professional bio or description here.
+          </p>
+        </div>
+
+        <div className="w-full max-w-5xl h-[150px] relative overflow-hidden">
+          <LogoLoop
+            logos={techLogos}
+            speed={50}
+            direction="left"
+            logoHeight={80}
+            gap={60}
+            hoverSpeed={0}
+            fadeOut
+            fadeOutColor="#3b5ba5"
+            ariaLabel="Technology stack"
           />
         </div>
-      </div>
+      </section>
 
-      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#3b5ba5] to-transparent z-15 pointer-events-none" />
+      {/* 4. PORTFOLIO SECTION */}
+      <section
+        id="portfolio"
+        className="relative min-h-screen w-full bg-[#33528e] flex items-center justify-center p-10 z-40"
+      >
+        <div className="max-w-6xl w-full text-center">
+          <h2 className="text-5xl mb-12 uppercase">Projects</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="aspect-square bg-white/5 rounded-2xl border border-white/10" />
+            <div className="aspect-square bg-white/5 rounded-2xl border border-white/10" />
+            <div className="aspect-square bg-white/5 rounded-2xl border border-white/10" />
+          </div>
+        </div>
+      </section>
+
+      {/* 5. CONTACT SECTION */}
+      <section
+        id="contact"
+        className="relative h-[60vh] w-full bg-[#2a4375] flex items-center justify-center z-40"
+      >
+        <div className="text-center">
+          <h2 className="text-5xl mb-4 uppercase">Get In Touch</h2>
+          <p className="text-lg opacity-70 mb-8">Email: your@email.com</p>
+          <div className="flex gap-6 justify-center">
+            <span className="cursor-pointer hover:text-[#FF9FFC]">
+              Instagram
+            </span>
+            <span className="cursor-pointer hover:text-[#FF9FFC]">Behance</span>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
