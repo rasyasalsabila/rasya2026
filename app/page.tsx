@@ -7,6 +7,10 @@ import { Suspense, useMemo, useEffect, useState } from "react";
 import LogoLoop from "./components/LogoLoop";
 import { Color } from "three";
 
+const TiltedCard = dynamic(() => import("./components/TiltedCard"), {
+  ssr: false,
+});
+
 const chocobold = localFont({
   src: "./fonts/Chocobold.ttf",
   weight: "700",
@@ -124,28 +128,61 @@ export default function Home() {
           </Suspense>
         </div>
 
-        <div className="absolute inset-0 z-30 flex items-end justify-center pointer-events-none">
-          <div className="relative w-full h-[50vh] md:w-[500px] md:h-[70vh]">
-            <Image
-              src="/images/picturestar.png"
-              alt="Rasya Portfolio"
-              fill
-              sizes="(max-width: 768px) 100vw, 600px"
-              className="object-contain object-bottom"
-              style={{ filter: "drop-shadow(0 20px 30px rgba(0,0,0,0.5))" }}
-              priority
-            />
-          </div>
-        </div>
-
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#3b5ba5] to-transparent z-15 pointer-events-none" />
+        {/* Gradasi halus untuk menyatukan transisi */}
+        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#3b5ba5] to-transparent z-25 pointer-events-none" />
       </section>
 
       {/* 3. ABOUT SECTION */}
       <section
         id="about"
-        className="relative min-h-screen w-full bg-[#3b5ba5] flex flex-col items-center justify-center p-10 z-40"
+        className="relative min-h-screen w-full bg-[#3b5ba5] flex flex-col items-center justify-start p-10 z-40"
       >
+        {/* CONTAINER TILTED CARD YANG MENEMBUS KE ATAS (HOME) */}
+        <div className="relative z-50 flex flex-row justify-center items-center gap-6 md:gap-5 -mt-[25vh] md:-mt-[35vh] mb-24 px-4">
+          {/* Foto 1 */}
+          <TiltedCard
+            imageSrc="/images/r1.jpg"
+            altText="Project 1"
+            captionText="Hallo"
+            containerHeight="400px"
+            containerWidth="300px"
+            imageHeight="400px"
+            imageWidth="300px"
+            rotateAmplitude={12}
+            scaleOnHover={1.05}
+            showMobileWarning={false}
+          />
+
+          {/* Foto 2 */}
+          <TiltedCard
+            imageSrc="/images/r2.jpg"
+            altText="Project 2"
+            captionText="Gue"
+            containerHeight="400px"
+            containerWidth="300px"
+            imageHeight="400px"
+            imageWidth="300px"
+            rotateAmplitude={12}
+            scaleOnHover={1.05}
+            showMobileWarning={false}
+          />
+
+          {/* Foto 3 */}
+          <TiltedCard
+            imageSrc="/images/r3.jpg"
+            altText="Project 3"
+            captionText="Rasya"
+            containerHeight="400px"
+            containerWidth="300px"
+            imageHeight="400px"
+            imageWidth="300px"
+            rotateAmplitude={12}
+            scaleOnHover={1.05}
+            showMobileWarning={false}
+          />
+        </div>
+
+        {/* KONTEN ABOUT ME */}
         <div className="max-w-4xl text-center mb-16">
           <h2 className="text-5xl mb-8 uppercase">About Me</h2>
           <p className="text-xl leading-relaxed font-sans opacity-80">
@@ -163,7 +200,6 @@ export default function Home() {
             hoverSpeed={0}
             fadeOut
             fadeOutColor="#3b5ba5"
-            ariaLabel="Technology stack"
           />
         </div>
       </section>
