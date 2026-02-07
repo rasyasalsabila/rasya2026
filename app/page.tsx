@@ -235,7 +235,7 @@ export default function Home() {
             <div className="flex flex-wrap justify-center gap-3 sm:gap-6">
               <div className="group relative">
                 <Image
-                  src="/images/logo/photoshop.png"
+                  src="/rasya2026/images/logo/photoshop.png"
                   alt="Photoshop"
                   width={40}
                   height={40}
@@ -244,7 +244,7 @@ export default function Home() {
               </div>
               <div className="group relative">
                 <Image
-                  src="/images/logo/illustrator.png"
+                  src="/rasya2026/images/logo/illustrator.png"
                   alt="Illustrator"
                   width={40}
                   height={40}
@@ -253,7 +253,7 @@ export default function Home() {
               </div>
               <div className="group relative">
                 <Image
-                  src="/images/logo/figma.png"
+                  src="/rasya2026/images/logo/figma.png"
                   alt="Figma"
                   width={40}
                   height={40}
@@ -262,7 +262,7 @@ export default function Home() {
               </div>
               <div className="group relative">
                 <Image
-                  src="/images/logo/canva.png"
+                  src="/rasya2026/images/logo/canva.png"
                   alt="Canva"
                   width={40}
                   height={40}
@@ -271,7 +271,7 @@ export default function Home() {
               </div>
               <div className="group relative">
                 <Image
-                  src="/images/logo/premiere.png"
+                  src="/rasya2026/images/logo/premiere.png"
                   alt="Premiere Pro"
                   width={40}
                   height={40}
