@@ -22,6 +22,11 @@ const breathing = localFont({
   display: "swap",
 });
 
+const quicksand = localFont({
+  src: "./fonts/Quicksand-Regular.ttf",
+  display: "swap",
+});
+
 const LiquidEther = dynamic(() => import("./components/LiquidEther"), {
   ssr: false,
   loading: () => <div className="fixed inset-0 bg-[#3b5ba5]" />,
@@ -185,8 +190,14 @@ export default function Home() {
         {/* KONTEN ABOUT ME */}
         <div className="max-w-4xl text-center mb-16">
           <h2 className="text-5xl mb-8 uppercase">About Me</h2>
-          <p className="text-xl leading-relaxed font-sans opacity-80">
-            Insert your professional bio or description here.
+          <p
+            className={`text-xl leading-relaxed opacity-80 ${quicksand.className}`}
+          >
+            A Graphic Designer with a strong foundation in Visual Communication
+            Design academic background. Throughout my career and academic, I
+            have worked on a wide range of Design Projects, Including Social
+            Media content, Brand Identity, Packaging Design, Out-of-Home
+            content, and Illustration.
           </p>
         </div>
 
