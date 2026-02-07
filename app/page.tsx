@@ -6,6 +6,7 @@ import localFont from "next/font/local";
 import { Suspense, useMemo, useEffect, useState } from "react";
 import LogoLoop from "./components/LogoLoop";
 import { Color } from "three";
+import CardSwap, { Card } from "./components/CardSwap";
 
 const TiltedCard = dynamic(() => import("./components/TiltedCard"), {
   ssr: false,
@@ -56,6 +57,15 @@ const techLogos = [
   { src: "/images/logo/w.png", alt: "w" },
   { src: "/images/logo/s.png", alt: "s" },
   { src: "/images/logo/b.png", alt: "b" },
+];
+
+const projects = [
+  { id: 1, src: "/portfolio/9.jpg" },
+  { id: 2, src: "/portfolio/10.jpg" },
+  { id: 3, src: "/portfolio/14.jpg" },
+  { id: 4, src: "/portfolio/15.jpg" },
+  { id: 5, src: "/portfolio/16.jpg" },
+  { id: 6, src: "/portfolio/18.jpg" },
 ];
 
 export default function Home() {
@@ -456,19 +466,94 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. PORTFOLIO SECTION */}
       <section
         id="portfolio"
-        className="relative min-h-screen w-full bg-[#33528e] flex items-center justify-center p-10 z-40"
+        className="relative min-h-auto w-full bg-[#33528e] flex items-center justify-center py-20 px-6 md:px-20 z-40 overflow-hidden"
       >
-        <div className="max-w-6xl w-full text-center">
-          <h2 className={`text-5xl mb-12 uppercase ${Gerhaus.className}`}>
-            Projects
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="aspect-square bg-white/5 rounded-2xl border border-white/10" />
-            <div className="aspect-square bg-white/5 rounded-2xl border border-white/10" />
-            <div className="aspect-square bg-white/5 rounded-2xl border border-white/10" />
+        <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+          {/* SISI KIRI: DESKRIPSI KONTEN */}
+          <div className="flex flex-col space-y-6 text-center md:text-left order-2 md:order-1">
+            <h2
+              className={`text-6xl md:text-8xl uppercase tracking-tighter text-orange-400 ${Gerhaus.className}`}
+            >
+              Featured
+              <br />
+              Projects
+            </h2>
+
+            <div className="h-[2px] w-24 bg-white/30 hidden md:block" />
+
+            <p
+              className={`text-xl md:text-2xl leading-relaxed opacity-90 max-w-md ${quicksand.className}`}
+            >
+              A curated selection of my most impactful works, ranging from
+              <b className="text-white"> Brand Identity</b> to
+              <b className="text-white"> Motion Graphics</b>. Each project is
+              crafted with precision to deliver unique visual experiences.
+            </p>
+
+            {/* Tombol View All Projects */}
+            <div className="mt-8 flex flex-col md:flex-row items-center gap-8 justify-center md:justify-start">
+              <button
+                className={`
+          group relative px-8 py-4 bg-orange-400 text-blue-900 font-bold rounded-full 
+          overflow-hidden transition-all duration-300 hover:pr-12 active:scale-95
+          ${quicksand.className}
+        `}
+              >
+                <span className="relative z-10">View All 22 Projects</span>
+                <span className="absolute right-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                  →
+                </span>
+                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+              </button>
+
+              <div className={`flex items-center gap-4 ${quicksand.className}`}>
+                <span className="text-4xl font-bold text-white/20">22</span>
+                <span className="text-sm uppercase tracking-widest opacity-50 text-left">
+                  Projects
+                  <br />
+                  Completed
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* SISI KANAN: KONTEN BERGERAK (CARD SWAP) */}
+          <div className="relative flex justify-center items-center order-1 md:order-2">
+            {/* Glow Effect di belakang kartu agar lebih bagus */}
+            <div className="absolute inset-0 bg-orange-400/10 blur-[100px] rounded-full pointer-events-none" />
+
+            <div
+              className="relative z-10"
+              style={{
+                height: "600px",
+                width: "100%",
+                maxWidth: "450px", // Sedikit diperkecil agar proporsional dengan teks
+              }}
+            >
+              <CardSwap
+                cardDistance={60}
+                verticalDistance={70}
+                delay={5000}
+                pauseOnHover={false}
+              >
+                {projects.map((project) => (
+                  <Card key={project.id}>
+                    <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+                      <Image
+                        src={project.src}
+                        alt={`Project ${project.id}`}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 500px"
+                        priority={project.id <= 2} // Prioritaskan loading 2 gambar pertama
+                      />
+                    </div>
+                  </Card>
+                ))}
+              </CardSwap>
+            </div>
           </div>
         </div>
       </section>
