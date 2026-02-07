@@ -169,7 +169,7 @@ export default function Home() {
       >
         <div className="relative z-50 flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 md:gap-5 -mt-[15vh] sm:-mt-[25vh] md:-mt-[35vh] mb-16 sm:mb-24 px-2">
           <TiltedCard
-            imageSrc="/images/r1.jpg"
+            imageSrc="/rasya2026/images/r1.jpg"
             altText="Project 1"
             captionText="Hello"
             containerHeight="300px"
@@ -182,7 +182,7 @@ export default function Home() {
           />
 
           <TiltedCard
-            imageSrc="/images/r2.jpg"
+            imageSrc="/rasya2026/images/r2.jpg"
             altText="Project 2"
             captionText="I'm"
             containerHeight="300px"
@@ -195,7 +195,7 @@ export default function Home() {
           />
 
           <TiltedCard
-            imageSrc="/images/r3.jpg"
+            imageSrc="/rasya2026/images/r3.jpg"
             altText="Project 3"
             captionText="Rasya"
             containerHeight="300px"
