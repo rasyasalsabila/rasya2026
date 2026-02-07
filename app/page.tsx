@@ -473,11 +473,10 @@ export default function Home() {
 
       <section
         id="portfolio"
-        className="relative w-full bg-[#33528e] py-12 px-6 z-40 overflow-hidden"
+        className="relative w-full bg-[#33528e] pt-12 pb-24 px-6 z-40 overflow-hidden"
       >
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center">
-          {/* BAGIAN TEKS - Diberi z-index lebih tinggi agar tombol selalu di atas */}
-          <div className="flex flex-col text-center md:text-left md:w-1/2 items-center md:items-start z-50 w-full mb-0">
+        <div className="max-w-7xl mx-auto flex flex-col items-center">
+          <div className="flex flex-col text-center items-center z-50 w-full">
             <h2
               className={`text-5xl sm:text-7xl lg:text-8xl uppercase tracking-tighter text-orange-400 ${Gerhaus.className} leading-[0.85]`}
             >
@@ -486,21 +485,19 @@ export default function Home() {
               PROJECTS
             </h2>
             <p
-              className={`text-base sm:text-lg md:text-xl leading-relaxed opacity-90 max-w-md ${quicksand.className} mt-4 mx-auto md:mx-0`}
+              className={`text-base sm:text-lg md:text-xl leading-relaxed opacity-90 max-w-md ${quicksand.className} mt-4`}
             >
               A curated selection of my most impactful works.
             </p>
-            <Link href="/projects" className="mt-6">
-              <button className="px-8 py-4 bg-orange-400 text-blue-900 font-bold rounded-full text-sm sm:text-base transition-transform active:scale-95">
+            <Link href="/projects" className="mt-6 mb-2">
+              <button className="px-8 py-4 bg-orange-400 text-blue-900 font-bold rounded-full text-sm sm:text-base">
                 View All Projects
               </button>
             </Link>
           </div>
 
-          {/* BAGIAN CARDSWAP - Ditambahkan z-index dan margin negatif ekstrem */}
-          <div className="relative w-full md:w-1/2 flex justify-center items-start z-30 -mt-20 md:mt-0">
-            {/* -mt-20 akan menarik paksa kartu naik ke area teks/tombol */}
-            <div className="relative w-full max-w-[280px] h-[350px] md:h-[500px] flex justify-center">
+          <div className="relative w-full flex justify-center items-start z-30 -mt-8">
+            <div className="relative w-full max-w-[280px] h-[350px] flex justify-center">
               <CardSwap
                 cardDistance={30}
                 verticalDistance={30}
@@ -515,7 +512,7 @@ export default function Home() {
                         alt={`Project ${project.id}`}
                         fill
                         className="object-cover"
-                        sizes="(max-width: 768px) 280px, 320px"
+                        sizes="280px"
                         priority={project.id <= 2}
                       />
                     </div>
