@@ -8,6 +8,7 @@ import LogoLoop from "./components/LogoLoop";
 import CardSwap, { Card } from "./components/CardSwap";
 import Link from "next/link";
 import LightRays from "./components/LightRays";
+import GooeyNav from "./components/GooeyNav";
 
 const TiltedCard = dynamic(() => import("./components/TiltedCard"), {
   ssr: false,
@@ -35,10 +36,6 @@ const LiquidEther = dynamic(() => import("./components/LiquidEther"), {
 });
 
 const CurvedLoop = dynamic(() => import("./components/CurvedLoop"), {
-  ssr: false,
-});
-
-const GooeyNav = dynamic(() => import("./components/GooeyNav"), {
   ssr: false,
 });
 
@@ -101,20 +98,23 @@ export default function Home() {
       className={`relative w-full bg-[#3b5ba5] text-white ${chocobold.className} antialiased`}
     >
       {mounted && (
-        <nav className="fixed top-2 sm:top-4 left-0 right-0 z-50 flex justify-center px-2 sm:px-4 pointer-events-auto">
-          <div
-            className={`w-full max-w-[95%] sm:max-w-fit bg-white/10 backdrop-blur-lg border border-white/20 rounded-full px-3 sm:px-4 py-2 sm:py-1 shadow-lg ${Gerhaus.className}`}
-          >
-            <div className="flex justify-around items-center w-full">
-              {items.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="text-[10px] xs:text-xs sm:text-sm md:text-base text-white/90 hover:text-white transition-colors duration-300 px-1 sm:px-2 py-1 rounded-full hover:bg-white/10"
-                >
-                  {item.label}
-                </a>
-              ))}
+        <nav
+          className={`fixed top-4 left-0 right-0 z-[100] flex justify-center px-4 ${Gerhaus.className}`}
+        >
+          <div className="relative w-full max-w-[400px]">
+            <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-full shadow-2xl overflow-hidden">
+              <div className="h-14 flex items-center justify-around px-2">
+                {items.map((item, index) => (
+                  <a
+                    key={index}
+                    href={item.href}
+                    className="relative px-3 py-2 text-sm sm:text-base font-medium text-white/80 hover:text-white transition-colors duration-300"
+                  >
+                    {item.label}
+                    <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-pink-500 rounded-full opacity-0 hover:opacity-100 transition-opacity" />
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </nav>
@@ -467,14 +467,14 @@ export default function Home() {
 
       <section
         id="portfolio"
-        className="relative min-h-auto w-full bg-[#33528e] flex items-center justify-center py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-20 z-40 overflow-hidden"
+        className="relative min-h-screen w-full bg-[#33528e] flex items-center justify-center py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-20 z-40 overflow-hidden"
       >
         <div className="max-w-7xl w-full flex flex-col md:flex-row gap-8 sm:gap-12 md:gap-16 items-center">
           <div className="flex flex-col space-y-4 sm:space-y-6 text-center md:text-left md:w-1/2">
             <h2
               className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase tracking-tighter text-orange-400 ${Gerhaus.className} leading-[0.9]`}
             >
-              FEAT
+              FEATURED
               <br />
               PROJECTS
             </h2>
@@ -516,6 +516,7 @@ export default function Home() {
                 height: "400px",
                 width: "100%",
                 maxWidth: "300px",
+                top: "70px",
               }}
             >
               <CardSwap
