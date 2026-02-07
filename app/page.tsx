@@ -148,7 +148,7 @@ export default function Home() {
       {/* 3. ABOUT SECTION */}
       <section
         id="about"
-        className="relative min-h-screen w-full bg-[#3b5ba5] flex flex-col items-center justify-start p-10 z-40"
+        className="relative min-h-auto w-full bg-[#3b5ba5] flex flex-col items-center justify-start p-10 z-40"
       >
         {/* CONTAINER TILTED CARD YANG MENEMBUS KE ATAS (HOME) */}
         <div className="relative z-50 flex flex-row justify-center items-center gap-6 md:gap-5 -mt-[25vh] md:-mt-[35vh] mb-24 px-4">
@@ -156,7 +156,7 @@ export default function Home() {
           <TiltedCard
             imageSrc="/images/r1.jpg"
             altText="Project 1"
-            captionText="Hallo"
+            captionText="Hello"
             containerHeight="400px"
             containerWidth="300px"
             imageHeight="400px"
@@ -170,7 +170,7 @@ export default function Home() {
           <TiltedCard
             imageSrc="/images/r2.jpg"
             altText="Project 2"
-            captionText="Gue"
+            captionText="I'm"
             containerHeight="400px"
             containerWidth="300px"
             imageHeight="400px"
@@ -278,7 +278,7 @@ export default function Home() {
       {/* 3.5 WORK EXPERIENCE SECTION */}
       <section
         id="experience"
-        className="relative min-h-screen w-full bg-[#3b5ba5] flex flex-col items-center py-20 px-6 z-40"
+        className="relative min-h-auto w-full bg-[#3b5ba5] flex flex-col items-center py-20 px-6 z-40"
       >
         <div className="max-w-6xl w-full">
           {/* Header Section dengan Aksen Garis */}
@@ -436,8 +436,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative min-h-screen w-full bg-[#3b5ba5] flex flex-col items-center justify-center gap-10 p-10 z-40">
-        <div className="w-full max-w-5xl h-[150px] relative overflow-hidden">
+      <section className="relative min-h-auto w-auto bg-[#3b5ba5] flex flex-col items-center justify-center gap-10 p-10 z-40">
+        <div className="w-full max-w-5xl h-[230px] relative overflow-hidden">
+          <h1
+            className={`text-3xl md:text-1xl text-white justify-center flex mb-6 uppercase tracking-wider z-10 relative ${Gerhaus.className}`}
+          >
+            BRAND HANDLED
+          </h1>
           <LogoLoop
             logos={techLogos}
             speed={50}
@@ -457,7 +462,9 @@ export default function Home() {
         className="relative min-h-screen w-full bg-[#33528e] flex items-center justify-center p-10 z-40"
       >
         <div className="max-w-6xl w-full text-center">
-          <h2 className="text-5xl mb-12 uppercase">Projects</h2>
+          <h2 className={`text-5xl mb-12 uppercase ${Gerhaus.className}`}>
+            Projects
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="aspect-square bg-white/5 rounded-2xl border border-white/10" />
             <div className="aspect-square bg-white/5 rounded-2xl border border-white/10" />
