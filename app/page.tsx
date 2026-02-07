@@ -27,6 +27,11 @@ const quicksand = localFont({
   display: "swap",
 });
 
+const Gerhaus = localFont({
+  src: "./fonts/Gerhaus-Regular.ttf",
+  display: "swap",
+});
+
 const LiquidEther = dynamic(() => import("./components/LiquidEther"), {
   ssr: false,
   loading: () => <div className="fixed inset-0 bg-[#3b5ba5]" />,
@@ -92,7 +97,10 @@ export default function Home() {
       {/* 1. NAVIGATION SECTION */}
       {mounted && (
         <nav className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 pointer-events-auto">
-          <div className="max-w-fit bg-white/10 backdrop-blur-lg border border-white/20 rounded-full px-2 py-1 shadow-lg">
+          {/* Perhatikan penggunaan backtick dan kurung kurawal di bawah ini */}
+          <div
+            className={`max-w-fit bg-white/10 backdrop-blur-lg border border-white/20 rounded-full px-2 py-1 shadow-lg ${Gerhaus.className}`}
+          >
             <GooeyNav items={items} />
           </div>
         </nav>
@@ -189,18 +197,246 @@ export default function Home() {
 
         {/* KONTEN ABOUT ME */}
         <div className="max-w-4xl text-center mb-16">
-          <h2 className="text-5xl mb-8 uppercase">About Me</h2>
+          <h2 className={`text-5xl mb-8 uppercase ${Gerhaus.className}`}>
+            About Me
+          </h2>
           <p
             className={`text-xl leading-relaxed opacity-80 ${quicksand.className}`}
           >
             A Graphic Designer with a strong foundation in Visual Communication
-            Design academic background. Throughout my career and academic, I
-            have worked on a wide range of Design Projects, Including Social
-            Media content, Brand Identity, Packaging Design, Out-of-Home
-            content, and Illustration.
+            <br />
+            Design academic background. Throughout my career, I have worked on
+            <br />
+            <b className="text-orange-400 font-bold opacity-100 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">
+              Social Media, Brand Identity, Packaging, and Illustration.
+            </b>
           </p>
-        </div>
 
+          {/* TOOLSET SKILLS SECTION - Sesuai Gambar Referensi */}
+          <div className="mt-12 flex flex-col items-center gap-4">
+            <h3
+              className={`uppercase tracking-widest text-sm font-bold ${quicksand.className}`}
+            >
+              Toolset Skills
+            </h3>
+            <div className="flex flex-wrap justify-center gap-6">
+              {/* Icon Photoshop */}
+              <div className="group relative">
+                <Image
+                  src="/images/logo/photoshop.png"
+                  alt="Photoshop"
+                  width={50}
+                  height={50}
+                  className="grayscale transition-all duration-300 group-hover:grayscale-0 group-hover:scale-110 drop-shadow-md"
+                />
+              </div>
+              {/* Icon Illustrator */}
+              <div className="group relative">
+                <Image
+                  src="/images/logo/illustrator.png"
+                  alt="Illustrator"
+                  width={50}
+                  height={50}
+                  className="grayscale transition-all duration-300 group-hover:grayscale-0 group-hover:scale-110 drop-shadow-md"
+                />
+              </div>
+              {/* Icon Figma */}
+              <div className="group relative">
+                <Image
+                  src="/images/logo/figma.png"
+                  alt="Figma"
+                  width={50}
+                  height={50}
+                  className="grayscale transition-all duration-300 group-hover:grayscale-0 group-hover:scale-110 drop-shadow-md"
+                />
+              </div>
+              {/* Icon Canva */}
+              <div className="group relative">
+                <Image
+                  src="/images/logo/canva.png"
+                  alt="Canva"
+                  width={50}
+                  height={50}
+                  className="grayscale transition-all duration-300 group-hover:grayscale-0 group-hover:scale-110 drop-shadow-md"
+                />
+              </div>
+              {/* Icon Premiere */}
+              <div className="group relative">
+                <Image
+                  src="/images/logo/premiere.png"
+                  alt="Premiere Pro"
+                  width={50}
+                  height={50}
+                  className="grayscale transition-all duration-300 group-hover:grayscale-0 group-hover:scale-110 drop-shadow-md"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3.5 WORK EXPERIENCE SECTION */}
+      <section
+        id="experience"
+        className="relative min-h-screen w-full bg-[#3b5ba5] flex flex-col items-center py-20 px-6 z-40"
+      >
+        <div className="max-w-6xl w-full">
+          {/* Header Section dengan Aksen Garis */}
+
+          <div className="flex items-center gap-4 mb-16 justify-center md:justify-start">
+            <h2
+              className={`text-5xl uppercase tracking-tighter ${Gerhaus.className}`}
+            >
+              Work Experience
+            </h2>
+            <div className="h-[2px] flex-grow bg-gradient-to-r from-orange-400 to-transparent hidden md:block" />
+          </div>
+
+          <div className="relative border-l-2 border-dashed border-orange-400/50 ml-4 md:ml-8 pl-8 md:pl-12 space-y-12">
+            {/* NEW: UPartners Venture Studio */}
+            <div className="relative group">
+              <div className="absolute -left-[41px] md:-left-[57px] top-0 w-4 h-4 rounded-full bg-orange-400 border-4 border-[#3b5ba5] group-hover:scale-150 transition-transform duration-300 shadow-[0_0_20px_rgba(251,146,60,1)]" />
+
+              <div className="bg-white/10 backdrop-blur-xl border border-orange-400/30 rounded-3xl p-8 hover:bg-white/15 transition-all duration-500 hover:-translate-y-2 ring-1 ring-white/10">
+                <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
+                  <div className="flex items-center gap-3">
+                    <h3 className="text-3xl text-orange-400">
+                      Graphic Designer
+                    </h3>
+                    <span className="bg-orange-400/20 text-orange-300 text-[10px] px-2 py-0.5 rounded-full border border-orange-400/30 uppercase tracking-widest">
+                      Current
+                    </span>
+                  </div>
+                  <span className={`text-sm opacity-60 ${quicksand.className}`}>
+                    2025 - Present
+                  </span>
+                </div>
+                <h4 className="text-xl mb-4 text-white/90">
+                  at UPartners Venture Studio
+                </h4>
+                <ul
+                  className={`space-y-2 opacity-80 text-lg ${quicksand.className} list-disc list-inside`}
+                >
+                  <li>
+                    Visual identity and creative direction for venture-backed
+                    startups.
+                  </li>
+                  <li>
+                    Designing high-converting marketing collateral and digital
+                    assets.
+                  </li>
+                  <li>
+                    Collaborating with cross-functional teams to build impactful
+                    brand experiences.
+                  </li>
+                  <li>
+                    Developing comprehensive design systems for scalable product
+                    growth.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            {/* 1. Judydoll Indonesia */}
+            <div className="relative group">
+              {/* Dot Timeline */}
+              <div className="absolute -left-[41px] md:-left-[57px] top-0 w-4 h-4 rounded-full bg-orange-400 border-4 border-[#3b5ba5] group-hover:scale-150 transition-transform duration-300 shadow-[0_0_15px_rgba(251,146,60,0.8)]" />
+
+              <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition-all duration-500 hover:-translate-y-2">
+                <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
+                  <h3 className="text-3xl text-orange-400">Graphic Designer</h3>
+                  <span className={`text-sm opacity-60 ${quicksand.className}`}>
+                    May 2025 - Present
+                  </span>
+                </div>
+                <h4 className="text-xl mb-4 text-white/90">
+                  at Judydoll Indonesia
+                </h4>
+                <ul
+                  className={`space-y-2 opacity-80 text-lg ${quicksand.className} list-disc list-inside`}
+                >
+                  <li>Photo editing for color grading and skin correction.</li>
+                  <li>
+                    Produced 25 to 30 meticulously crafted Instagram feeds
+                    monthly.
+                  </li>
+                  <li>
+                    Created over 10 motion designs for Daily Content & TikTok
+                    Ads.
+                  </li>
+                  <li>
+                    Produced Judydoll design posters for Jakarta X Beauty 2025.
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* 2. Hairum */}
+            <div className="relative group">
+              <div className="absolute -left-[41px] md:-left-[57px] top-0 w-4 h-4 rounded-full bg-orange-400 border-4 border-[#3b5ba5] group-hover:scale-150 transition-transform duration-300 shadow-[0_0_15px_rgba(251,146,60,0.8)]" />
+
+              <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition-all duration-500 hover:-translate-y-2">
+                <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
+                  <h3 className="text-3xl text-orange-400">Graphic Designer</h3>
+                  <span className={`text-sm opacity-60 ${quicksand.className}`}>
+                    Dec 2023 - Present
+                  </span>
+                </div>
+                <h4 className="text-xl mb-4 text-white/90">at Hairum</h4>
+                <ul
+                  className={`space-y-2 opacity-80 text-lg ${quicksand.className} list-disc list-inside`}
+                >
+                  <li>
+                    Designed 10 distinctive Shopee e-commerce covers monthly.
+                  </li>
+                  <li>
+                    Developed packaging designs for upcoming product launches.
+                  </li>
+                  <li>
+                    Produced 5 brand collateral materials for Jakarta X Beauty.
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* 3. PT Good Sale Tech */}
+            <div className="relative group">
+              <div className="absolute -left-[41px] md:-left-[57px] top-0 w-4 h-4 rounded-full bg-orange-400 border-4 border-[#3b5ba5] group-hover:scale-150 transition-transform duration-300 shadow-[0_0_15px_rgba(251,146,60,0.8)]" />
+
+              <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition-all duration-500 hover:-translate-y-2">
+                <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
+                  <h3 className="text-3xl text-orange-400">
+                    Graphic Designer Intern
+                  </h3>
+                  <span className={`text-sm opacity-60 ${quicksand.className}`}>
+                    Jan 2025 - May 2025
+                  </span>
+                </div>
+                <h4 className="text-xl mb-4 text-white/90">
+                  at PT Good Sale Tech
+                </h4>
+                <ul
+                  className={`space-y-2 opacity-80 text-lg ${quicksand.className} list-disc list-inside`}
+                >
+                  <li>
+                    Designed content for 4 in-house brands (Sea Makeup, Acnaway,
+                    GoSmile, MilkRecipe).
+                  </li>
+                  <li>
+                    Created 10+ social media assets monthly aligning with
+                    regional trends.
+                  </li>
+                  <li>
+                    Collaborated cross-functionally with marketing and brand
+                    teams.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative min-h-screen w-full bg-[#3b5ba5] flex flex-col items-center justify-center gap-10 p-10 z-40">
         <div className="w-full max-w-5xl h-[150px] relative overflow-hidden">
           <LogoLoop
             logos={techLogos}
