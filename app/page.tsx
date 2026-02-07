@@ -44,7 +44,7 @@ const techLogos = [
   { src: "/rasya2026/images/logo/onsei.png", alt: "Onsei" },
   { src: "/rasya2026/images/logo/judydoll.png", alt: "judydoll" },
   { src: "/rasya2026/images/logo/hairum.png", alt: "Hairum" },
-  { src: "/rasya2026/images/logo/Sea Makeup.png", alt: "Sea Makeup" },
+  { src: "/rasya2026/images/logo/sea-makeup.png", alt: "Sea Makeup" }, // Pastikan nama file di folder juga sea-makeup.png
   { src: "/rasya2026/images/logo/acnaway.png", alt: "acnaway" },
   { src: "/rasya2026/images/logo/mr.png", alt: "mr" },
   { src: "/rasya2026/images/logo/w.png", alt: "w" },

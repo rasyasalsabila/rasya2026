@@ -4,8 +4,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: "/rasya2026", // Tambahkan ini (sesuai nama repository)
-  assetPrefix: "/rasya2026", // Tambahkan ini agar CSS & Gambar terbaca benar
+  basePath: "/rasya2026", // Wajib ada agar CSS dan JS terbaca di sub-folder
   eslint: {
     ignoreDuringBuilds: true,
   },
