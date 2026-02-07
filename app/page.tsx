@@ -473,39 +473,34 @@ export default function Home() {
 
       <section
         id="portfolio"
-        className="relative min-h-screen w-full bg-[#33528e] flex items-center justify-center py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-20 z-40 overflow-hidden"
+        className="relative min-h-screen w-full bg-[#33528e] flex items-center justify-center py-12 md:py-24 px-6 md:px-20 z-40 overflow-hidden"
       >
-        <div className="max-w-7xl w-full flex flex-col md:flex-row gap-8 sm:gap-12 md:gap-16 items-center">
-          <div className="flex flex-col space-y-4 sm:space-y-6 text-center md:text-left md:w-1/2">
+        <div className="max-w-7xl w-full flex flex-col md:flex-row gap-10 md:gap-16 items-center">
+          <div className="flex flex-col text-center md:text-left md:w-1/2 items-center md:items-start z-20">
             <h2
-              className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase tracking-tighter text-orange-400 ${Gerhaus.className} leading-[0.9]`}
+              className={`text-5xl sm:text-7xl lg:text-8xl uppercase tracking-tighter text-orange-400 ${Gerhaus.className} leading-[0.85]`}
             >
               FEATURED
               <br />
               PROJECTS
             </h2>
 
-            <div className="h-[2px] w-16 sm:w-20 md:w-24 bg-white/30 hidden md:block" />
+            <div className="h-[2px] w-20 bg-white/30 hidden md:block my-6" />
 
             <p
-              className={`text-base sm:text-lg md:text-xl leading-relaxed opacity-90 max-w-md ${quicksand.className} mt-4`}
+              className={`text-base sm:text-lg md:text-xl leading-relaxed opacity-90 max-w-md ${quicksand.className} mt-6 mx-auto md:mx-0`}
             >
               A curated selection of my most impactful works, ranging from{" "}
               <b className="text-white">Brand Identity</b> to{" "}
-              <b className="text-white">Motion Graphics</b>. Each project is
-              crafted with precision to deliver unique visual experiences.
+              <b className="text-white">Motion Graphics</b>.
             </p>
 
-            <Link href="/projects">
+            <Link href="/projects" className="mt-8">
               <button
-                className={`
-                  group relative px-6 sm:px-8 py-3 sm:py-4 bg-orange-400 text-blue-900 font-bold rounded-full 
-                  overflow-hidden transition-all duration-300 hover:pr-10 sm:hover:pr-12 active:scale-95
-                  ${quicksand.className} text-sm sm:text-base mt-6 w-fit mx-auto md:mx-0
-                `}
+                className={`group relative px-8 py-4 bg-orange-400 text-blue-900 font-bold rounded-full overflow-hidden transition-all duration-300 hover:pr-12 active:scale-95 ${quicksand.className} text-sm sm:text-base`}
               >
                 <span className="relative z-10">View All Projects</span>
-                <span className="absolute right-3 sm:right-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                <span className="absolute right-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
                   →
                 </span>
                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
@@ -513,33 +508,24 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="relative flex justify-center items-center md:w-1/2">
-            <div className="absolute inset-0 bg-orange-400/10 blur-[60px] sm:blur-[80px] md:blur-[100px] rounded-full pointer-events-none" />
-
-            <div
-              className="relative z-10"
-              style={{
-                height: "400px",
-                width: "100%",
-                maxWidth: "300px",
-                top: "70px",
-              }}
-            >
+          <div className="relative w-full md:w-1/2 flex justify-center items-center mt-6 md:mt-0">
+            <div className="absolute inset-0 bg-orange-400/10 blur-[60px] md:blur-[100px] rounded-full pointer-events-none" />
+            <div className="relative z-10 w-full max-w-[260px] md:max-w-[320px] h-[350px] md:h-[400px]">
               <CardSwap
-                cardDistance={40}
-                verticalDistance={50}
+                cardDistance={30}
+                verticalDistance={40}
                 delay={5000}
                 pauseOnHover={false}
               >
                 {projects.map((project) => (
                   <Card key={project.id}>
-                    <div className="relative w-full h-full rounded-xl sm:rounded-2xl overflow-hidden shadow-xl sm:shadow-2xl border border-white/10">
+                    <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-[#2a437a]">
                       <Image
                         src={project.src}
                         alt={`Project ${project.id}`}
                         fill
                         className="object-cover"
-                        sizes="(max-width: 768px) 100vw, 300px"
+                        sizes="(max-width: 768px) 260px, 320px"
                         priority={project.id <= 2}
                       />
                     </div>
