@@ -9,6 +9,9 @@ import CardSwap, { Card } from "./components/CardSwap";
 import Link from "next/link";
 import LightRays from "./components/LightRays";
 import GooeyNav from "./components/GooeyNav";
+import getConfig from "next/config";
+
+const { publicRuntimeConfig } = getConfig() || {};
 
 const TiltedCard = dynamic(() => import("./components/TiltedCard"), {
   ssr: false,
@@ -39,17 +42,20 @@ const CurvedLoop = dynamic(() => import("./components/CurvedLoop"), {
   ssr: false,
 });
 
+const isProd = process.env.NODE_ENV === "production";
+const basePath = isProd ? "/rasya2026" : "";
+
 const techLogos = [
-  { src: "/images/logo/aarti.png", alt: "Aarti" },
-  { src: "/images/logo/onsei.png", alt: "Onsei" },
-  { src: "/images/logo/judydoll.png", alt: "judydoll" },
-  { src: "/images/logo/hairum.png", alt: "Hairum" },
-  { src: "/images/logo/sea-makeup.png", alt: "Sea Makeup" }, 
-  { src: "/images/logo/acnaway.png", alt: "acnaway" },
-  { src: "/images/logo/mr.png", alt: "mr" },
-  { src: "/images/logo/w.png", alt: "w" },
-  { src: "/images/logo/s.png", alt: "s" },
-  { src: "/images/logo/b.png", alt: "b" },
+  { src: `${basePath}/images/logo/aarti.png`, alt: "Aarti" },
+  { src: `${basePath}/images/logo/onsei.png`, alt: "Onsei" },
+  { src: `${basePath}/images/logo/judydoll.png`, alt: "judydoll" },
+  { src: `${basePath}/images/logo/hairum.png`, alt: "Hairum" },
+  { src: `${basePath}/images/logo/sea-makeup.png`, alt: "Sea Makeup" },
+  { src: `${basePath}/images/logo/acnaway.png`, alt: "acnaway" },
+  { src: `${basePath}/images/logo/mr.png`, alt: "mr" },
+  { src: `${basePath}/images/logo/w.png`, alt: "w" },
+  { src: `${basePath}/images/logo/s.png`, alt: "s" },
+  { src: `${basePath}/images/logo/b.png`, alt: "b" },
 ];
 
 const projects = [

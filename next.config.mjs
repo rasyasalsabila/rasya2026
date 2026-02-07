@@ -1,10 +1,13 @@
 /** @type {import('next').NextConfig} */
+const isProd = process.env.NODE_ENV === "production";
+
 const nextConfig = {
   output: "export",
   images: {
     unoptimized: true,
   },
-  // basePath: "/rasya2026", <--- Berikan tanda // di depan baris ini
+  // Otomatis pakai /rasya2026 kalau di-upload ke GitHub, tapi kosong kalau di lokal
+  basePath: isProd ? "/rasya2026" : "",
   eslint: {
     ignoreDuringBuilds: true,
   },
