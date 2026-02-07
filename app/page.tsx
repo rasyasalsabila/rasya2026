@@ -451,7 +451,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative min-h-auto w-auto bg-[#3b5ba5] flex flex-col items-center justify-center gap-6 sm:gap-8 md:gap-10 p-4 sm:p-6 md:p-10 z-40">
+      <section className="relative min-h-auto w-full bg-[#3b5ba5] flex flex-col items-center justify-center gap-6 sm:gap-8 md:gap-10 p-4 sm:p-6 md:p-10 z-40">
         <div className="w-full max-w-5xl h-[180px] sm:h-[200px] md:h-[230px] relative overflow-hidden">
           <h1
             className={`text-xl sm:text-2xl md:text-3xl text-white justify-center flex mb-4 sm:mb-6 uppercase tracking-wider z-10 relative ${Gerhaus.className}`}
