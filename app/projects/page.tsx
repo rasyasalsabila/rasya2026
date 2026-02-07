@@ -25,16 +25,24 @@ export default function ProjectsPage() {
       <div className="absolute top-10 left-10 z-50">
         <Link
           href="/"
-          className={`group flex items-center gap-4 text-orange-400 hover:text-white transition-all duration-300 ${quicksand.className}`}
+          /* Mengubah text-orange-400 menjadi warna custom #d03a92 */
+          className={`group flex items-center gap-4 transition-all duration-300 ${quicksand.className}`}
+          style={{ color: "#d03a92" }} // Menggunakan inline style agar warna presisi
         >
-          <div className="flex items-center justify-center w-12 h-12 rounded-full border-2 border-orange-400 group-hover:bg-orange-400 group-hover:text-[#33528e] transition-all font-bold">
+          <div
+            className="flex items-center justify-center w-12 h-12 rounded-full border-2 transition-all font-bold group-hover:bg-[#d03a92] group-hover:text-white"
+            style={{ borderColor: "#d03a92" }} // Garis lingkaran dengan warna baru
+          >
             ←
           </div>
           <div className="flex flex-col">
             <span className="uppercase tracking-[0.3em] font-bold text-xs">
               Go Back
             </span>
-            <span className="text-white text-lg font-light">Home</span>
+            {/* Menambahkan span untuk teks "Home" agar terlihat serasi */}
+            <span className="text-white text-lg font-light group-hover:text-[#d03a92] transition-colors">
+              Home
+            </span>
           </div>
         </Link>
       </div>

@@ -94,7 +94,7 @@ export default function Home() {
   );
 
   const portfolioTextClass = `
-    ${breathing.className} 
+    ${Gerhaus.className} 
     text-[45px] md:text-[65px] 
     text-white normal-case
     drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]
