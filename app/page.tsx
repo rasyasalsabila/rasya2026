@@ -40,16 +40,16 @@ const CurvedLoop = dynamic(() => import("./components/CurvedLoop"), {
 });
 
 const techLogos = [
-  { src: "/rasya2026/images/logo/aarti.png", alt: "Aarti" },
-  { src: "/rasya2026/images/logo/onsei.png", alt: "Onsei" },
-  { src: "/rasya2026/images/logo/judydoll.png", alt: "judydoll" },
-  { src: "/rasya2026/images/logo/hairum.png", alt: "Hairum" },
-  { src: "/rasya2026/images/logo/sea-makeup.png", alt: "Sea Makeup" }, // Pastikan nama file di folder juga sea-makeup.png
-  { src: "/rasya2026/images/logo/acnaway.png", alt: "acnaway" },
-  { src: "/rasya2026/images/logo/mr.png", alt: "mr" },
-  { src: "/rasya2026/images/logo/w.png", alt: "w" },
-  { src: "/rasya2026/images/logo/s.png", alt: "s" },
-  { src: "/rasya2026/images/logo/b.png", alt: "b" },
+  { src: "/images/logo/aarti.png", alt: "Aarti" },
+  { src: "/images/logo/onsei.png", alt: "Onsei" },
+  { src: "/images/logo/judydoll.png", alt: "judydoll" },
+  { src: "/images/logo/hairum.png", alt: "Hairum" },
+  { src: "/images/logo/sea-makeup.png", alt: "Sea Makeup" }, 
+  { src: "/images/logo/acnaway.png", alt: "acnaway" },
+  { src: "/images/logo/mr.png", alt: "mr" },
+  { src: "/images/logo/w.png", alt: "w" },
+  { src: "/images/logo/s.png", alt: "s" },
+  { src: "/images/logo/b.png", alt: "b" },
 ];
 
 const projects = [
