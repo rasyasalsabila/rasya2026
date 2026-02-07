@@ -473,39 +473,39 @@ export default function Home() {
 
       <section
         id="portfolio"
-        className="relative min-h-screen w-full bg-[#33528e] flex items-center justify-center py-12 sm:py-20 px-6 md:px-20 z-40 overflow-hidden"
+        className="relative min-h-screen w-full bg-[#33528e] flex items-center justify-center py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-20 z-40 overflow-hidden"
       >
-        <div className="max-w-7xl w-full flex flex-col md:flex-row gap-10 md:gap-16 items-center">
-          {/* Kolom Teks */}
-          <div className="flex flex-col text-center md:text-left md:w-1/2 z-20">
+        <div className="max-w-7xl w-full flex flex-col md:flex-row gap-8 sm:gap-12 md:gap-16 items-center">
+          <div className="flex flex-col space-y-4 sm:space-y-6 text-center md:text-left md:w-1/2">
             <h2
-              className={`text-5xl sm:text-7xl lg:text-8xl uppercase tracking-tighter text-orange-400 ${Gerhaus.className} leading-[0.85]`}
+              className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase tracking-tighter text-orange-400 ${Gerhaus.className} leading-[0.9]`}
             >
               FEATURED
               <br />
               PROJECTS
             </h2>
 
-            <div className="h-[2px] w-20 bg-white/30 hidden md:block my-6" />
+            <div className="h-[2px] w-16 sm:w-20 md:w-24 bg-white/30 hidden md:block" />
 
             <p
-              className={`text-base sm:text-lg md:text-xl leading-relaxed opacity-90 max-w-md ${quicksand.className} mt-4 mx-auto md:mx-0`}
+              className={`text-base sm:text-lg md:text-xl leading-relaxed opacity-90 max-w-md ${quicksand.className} mt-4`}
             >
               A curated selection of my most impactful works, ranging from{" "}
               <b className="text-white">Brand Identity</b> to{" "}
-              <b className="text-white">Motion Graphics</b>.
+              <b className="text-white">Motion Graphics</b>. Each project is
+              crafted with precision to deliver unique visual experiences.
             </p>
 
-            <Link href="/projects" className="mt-8 w-fit mx-auto md:mx-0">
+            <Link href="/projects">
               <button
                 className={`
-            group relative px-8 py-4 bg-orange-400 text-blue-900 font-bold rounded-full 
-            overflow-hidden transition-all duration-300 hover:pr-12 active:scale-95
-            ${quicksand.className} text-sm sm:text-base
-          `}
+                  group relative px-6 sm:px-8 py-3 sm:py-4 bg-orange-400 text-blue-900 font-bold rounded-full 
+                  overflow-hidden transition-all duration-300 hover:pr-10 sm:hover:pr-12 active:scale-95
+                  ${quicksand.className} text-sm sm:text-base mt-6 w-fit mx-auto md:mx-0
+                `}
               >
                 <span className="relative z-10">View All Projects</span>
-                <span className="absolute right-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                <span className="absolute right-3 sm:right-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
                   →
                 </span>
                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
@@ -513,34 +513,33 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* Kolom Kartu (CardSwap) */}
-          <div className="relative flex justify-center items-center w-full md:w-1/2 mt-10 md:mt-0">
-            {/* Glow Effect */}
-            <div className="absolute inset-0 bg-orange-400/10 blur-[60px] md:blur-[100px] rounded-full pointer-events-none" />
+          <div className="relative flex justify-center items-center md:w-1/2">
+            <div className="absolute inset-0 bg-orange-400/10 blur-[60px] sm:blur-[80px] md:blur-[100px] rounded-full pointer-events-none" />
 
             <div
               className="relative z-10"
               style={{
-                height: "350px", // Tinggi yang aman untuk mobile & desktop
+                height: "400px",
                 width: "100%",
-                maxWidth: "280px", // Lebar kartu yang ideal
+                maxWidth: "300px",
+                top: "70px",
               }}
             >
               <CardSwap
-                cardDistance={30} // Dikurangi sedikit agar tidak terlalu 'melebar' di HP
-                verticalDistance={40}
+                cardDistance={40}
+                verticalDistance={50}
                 delay={5000}
                 pauseOnHover={false}
               >
                 {projects.map((project) => (
                   <Card key={project.id}>
-                    <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-[#2a437a]">
+                    <div className="relative w-full h-full rounded-xl sm:rounded-2xl overflow-hidden shadow-xl sm:shadow-2xl border border-white/10">
                       <Image
                         src={project.src}
                         alt={`Project ${project.id}`}
                         fill
                         className="object-cover"
-                        sizes="(max-width: 768px) 280px, 300px"
+                        sizes="(max-width: 768px) 100vw, 300px"
                         priority={project.id <= 2}
                       />
                     </div>
