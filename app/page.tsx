@@ -473,10 +473,11 @@ export default function Home() {
 
       <section
         id="portfolio"
-        className="relative min-h-screen w-full bg-[#33528e] flex items-center justify-center py-10 md:py-24 px-6 md:px-20 z-40 overflow-hidden"
+        className="relative w-full bg-[#33528e] py-12 px-6 z-40 overflow-hidden"
       >
-        <div className="max-w-7xl w-full flex flex-col md:flex-row gap-0 md:gap-16 items-center">
-          <div className="flex flex-col text-center md:text-left md:w-1/2 items-center md:items-start z-20">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center gap-0 md:gap-16">
+          {/* Bagian Teks: Tetap Rata Kiri di PC */}
+          <div className="flex flex-col text-center md:text-left md:w-1/2 items-center md:items-start z-20 w-full">
             <h2
               className={`text-5xl sm:text-7xl lg:text-8xl uppercase tracking-tighter text-orange-400 ${Gerhaus.className} leading-[0.85]`}
             >
@@ -484,34 +485,23 @@ export default function Home() {
               <br />
               PROJECTS
             </h2>
-
-            <div className="h-[2px] w-20 bg-white/30 hidden md:block my-6" />
-
             <p
               className={`text-base sm:text-lg md:text-xl leading-relaxed opacity-90 max-w-md ${quicksand.className} mt-4 mx-auto md:mx-0`}
             >
-              A curated selection of my most impactful works, ranging from{" "}
-              <b className="text-white">Brand Identity</b> to{" "}
-              <b className="text-white">Motion Graphics</b>.
+              A curated selection of my most impactful works.
             </p>
-
-            <Link href="/projects" className="mt-6 mb-2">
+            <Link href="/projects" className="mt-6">
               <button
-                className={`group relative px-8 py-4 bg-orange-400 text-blue-900 font-bold rounded-full overflow-hidden transition-all duration-300 hover:pr-12 active:scale-95 ${quicksand.className} text-sm sm:text-base`}
+                className={`px-8 py-4 bg-orange-400 text-blue-900 font-bold rounded-full ${quicksand.className} text-sm sm:text-base`}
               >
-                <span className="relative z-10">View All Projects</span>
-                <span className="absolute right-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-                  →
-                </span>
-                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                View All Projects
               </button>
             </Link>
           </div>
 
-          <div className="relative w-full md:w-1/2 flex justify-center items-center mt-4 md:mt-0">
-            <div className="absolute inset-0 bg-orange-400/10 blur-[60px] md:blur-[100px] rounded-full pointer-events-none" />
-
-            <div className="relative z-10 w-full max-w-[260px] md:max-w-[320px] h-[320px] md:h-[450px] mx-auto">
+          {/* Bagian CardSwap: Tengah & Naik di HP, Samping di PC */}
+          <div className="relative w-full md:w-1/2 flex justify-center items-start -mt-10 md:mt-0">
+            <div className="relative z-10 w-full max-w-[280px] h-[350px] md:h-[500px] flex justify-center">
               <CardSwap
                 cardDistance={30}
                 verticalDistance={35}
@@ -526,7 +516,7 @@ export default function Home() {
                         alt={`Project ${project.id}`}
                         fill
                         className="object-cover"
-                        sizes="(max-width: 768px) 260px, 320px"
+                        sizes="(max-width: 768px) 280px, 320px"
                         priority={project.id <= 2}
                       />
                     </div>
