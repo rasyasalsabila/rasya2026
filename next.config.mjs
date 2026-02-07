@@ -1,14 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export", // Wajib untuk GitHub Pages
+  output: "export",
   images: {
-    unoptimized: true, // Wajib untuk GitHub Pages
+    unoptimized: true,
   },
+  basePath: "/rasya2026", // Tambahkan ini (sesuai nama repository)
+  assetPrefix: "/rasya2026", // Tambahkan ini agar CSS & Gambar terbaca benar
   eslint: {
-    ignoreDuringBuilds: true, // Abaikan error linting agar build tidak berhenti
+    ignoreDuringBuilds: true,
   },
   typescript: {
-    ignoreBuildErrors: true, // Abaikan error typescript agar build tetap lanjut
+    ignoreBuildErrors: true,
   },
 };
 
