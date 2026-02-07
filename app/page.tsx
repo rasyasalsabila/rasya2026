@@ -59,12 +59,12 @@ const techLogos = [
 ];
 
 const projects = [
-  { id: 1, src: "/portfolio/9.jpg" },
-  { id: 2, src: "/portfolio/10.jpg" },
-  { id: 3, src: "/portfolio/14.jpg" },
-  { id: 4, src: "/portfolio/15.jpg" },
-  { id: 5, src: "/portfolio/16.jpg" },
-  { id: 6, src: "/portfolio/18.jpg" },
+  { id: 1, src: `${basePath}/portfolio/9.jpg` },
+  { id: 2, src: `${basePath}/portfolio/10.jpg` },
+  { id: 3, src: `${basePath}/portfolio/14.jpg` },
+  { id: 4, src: `${basePath}/portfolio/15.jpg` },
+  { id: 5, src: `${basePath}/portfolio/16.jpg` },
+  { id: 6, src: `${basePath}/portfolio/18.jpg` },
 ];
 
 export default function Home() {
@@ -650,4 +650,3 @@ export default function Home() {
     </main>
   );
 }
- 
