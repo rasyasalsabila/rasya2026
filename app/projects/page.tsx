@@ -10,9 +10,10 @@ const DomeGallery = dynamic(() => import("../components/DomeGallery"), {
   ssr: false,
 });
 
+const basePath = "/rasya2026";
 const projects = Array.from({ length: 22 }, (_, i) => ({
   id: i + 1,
-  src: `/portfolio/${i + 1}.jpg`,
+  src: `${basePath}/portfolio/${i + 1}.jpg`,
   alt: `Project Highlight #${i + 1} - Visual Design Concept 2026`,
 }));
 
