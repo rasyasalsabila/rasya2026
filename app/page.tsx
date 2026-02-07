@@ -7,6 +7,7 @@ import { Suspense, useMemo, useEffect, useState } from "react";
 import LogoLoop from "./components/LogoLoop";
 import { Color } from "three";
 import CardSwap, { Card } from "./components/CardSwap";
+import Link from "next/link";
 
 const TiltedCard = dynamic(() => import("./components/TiltedCard"), {
   ssr: false,
@@ -493,13 +494,13 @@ export default function Home() {
             </p>
 
             {/* Tombol View All Projects */}
-            <div className="mt-8 flex flex-col md:flex-row items-center gap-8 justify-center md:justify-start">
+            <Link href="/projects">
               <button
                 className={`
-          group relative px-8 py-4 bg-orange-400 text-blue-900 font-bold rounded-full 
-          overflow-hidden transition-all duration-300 hover:pr-12 active:scale-95
-          ${quicksand.className}
-        `}
+    group relative px-8 py-4 bg-orange-400 text-blue-900 font-bold rounded-full 
+    overflow-hidden transition-all duration-300 hover:pr-12 active:scale-95
+    ${quicksand.className}
+  `}
               >
                 <span className="relative z-10">View All 22 Projects</span>
                 <span className="absolute right-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
@@ -507,16 +508,7 @@ export default function Home() {
                 </span>
                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
               </button>
-
-              <div className={`flex items-center gap-4 ${quicksand.className}`}>
-                <span className="text-4xl font-bold text-white/20">22</span>
-                <span className="text-sm uppercase tracking-widest opacity-50 text-left">
-                  Projects
-                  <br />
-                  Completed
-                </span>
-              </div>
-            </div>
+            </Link>
           </div>
 
           {/* SISI KANAN: KONTEN BERGERAK (CARD SWAP) */}
