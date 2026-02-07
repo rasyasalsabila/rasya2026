@@ -4,8 +4,6 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: "/rasya2026",
-  assetPrefix: "/rasya2026",
   eslint: {
     ignoreDuringBuilds: true,
   },
