@@ -475,9 +475,9 @@ export default function Home() {
         id="portfolio"
         className="relative w-full bg-[#33528e] py-12 px-6 z-40 overflow-hidden"
       >
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center gap-0 md:gap-16">
-          {/* Bagian Teks: Tetap Rata Kiri di PC */}
-          <div className="flex flex-col text-center md:text-left md:w-1/2 items-center md:items-start z-20 w-full">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center">
+          {/* BAGIAN TEKS - Diberi z-index lebih tinggi agar tombol selalu di atas */}
+          <div className="flex flex-col text-center md:text-left md:w-1/2 items-center md:items-start z-50 w-full mb-0">
             <h2
               className={`text-5xl sm:text-7xl lg:text-8xl uppercase tracking-tighter text-orange-400 ${Gerhaus.className} leading-[0.85]`}
             >
@@ -491,20 +491,19 @@ export default function Home() {
               A curated selection of my most impactful works.
             </p>
             <Link href="/projects" className="mt-6">
-              <button
-                className={`px-8 py-4 bg-orange-400 text-blue-900 font-bold rounded-full ${quicksand.className} text-sm sm:text-base`}
-              >
+              <button className="px-8 py-4 bg-orange-400 text-blue-900 font-bold rounded-full text-sm sm:text-base transition-transform active:scale-95">
                 View All Projects
               </button>
             </Link>
           </div>
 
-          {/* Bagian CardSwap: Tengah & Naik di HP, Samping di PC */}
-          <div className="relative w-full md:w-1/2 flex justify-center items-start -mt-10 md:mt-0">
-            <div className="relative z-10 w-full max-w-[280px] h-[350px] md:h-[500px] flex justify-center">
+          {/* BAGIAN CARDSWAP - Ditambahkan z-index dan margin negatif ekstrem */}
+          <div className="relative w-full md:w-1/2 flex justify-center items-start z-30 -mt-20 md:mt-0">
+            {/* -mt-20 akan menarik paksa kartu naik ke area teks/tombol */}
+            <div className="relative w-full max-w-[280px] h-[350px] md:h-[500px] flex justify-center">
               <CardSwap
                 cardDistance={30}
-                verticalDistance={35}
+                verticalDistance={30}
                 delay={5000}
                 pauseOnHover={false}
               >
