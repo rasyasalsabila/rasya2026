@@ -497,12 +497,8 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* Bagian CardSwap: Menggunakan Negatif Margin Lebih Berani (-mt-16) */}
-          <div className="relative w-full flex justify-center items-center z-30 -mt-16 sm:mt-0">
-            {/* justify-center: Memastikan kartu di tengah horizontal.
-               -mt-16: Menarik kartu ke atas (khusus mobile).
-            */}
-            <div className="relative w-full max-w-[280px] h-[350px] sm:h-[450px] md:h-[500px] flex justify-center">
+          <div className="relative w-full flex justify-start items-start z-30 -mt-12 sm:mt-0">
+            <div className="relative w-full max-w-[280px] h-[380px] sm:h-[450px] md:h-[500px] flex justify-start -ml-8 sm:ml-0">
               <CardSwap
                 cardDistance={30}
                 verticalDistance={30}
@@ -517,7 +513,7 @@ export default function Home() {
                         alt={`Project ${project.id}`}
                         fill
                         className="object-cover"
-                        sizes="(max-width: 768px) 280px, 400px"
+                        sizes="280px"
                         priority={project.id <= 2}
                       />
                     </div>
