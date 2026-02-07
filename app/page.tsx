@@ -46,7 +46,7 @@ const isProd = process.env.NODE_ENV === "production";
 const basePath = isProd ? "/rasya2026" : "";
 
 const techLogos = [
-  { src: `/rasya2026/images/logo/aarti.png`, alt: "Aarti" },
+  { src: `${basePath}/images/logo/aarti.png`, alt: "Aarti" },
   { src: `${basePath}/images/logo/onsei.png`, alt: "Onsei" },
   { src: `${basePath}/images/logo/judydoll.png`, alt: "judydoll" },
   { src: `${basePath}/images/logo/hairum.png`, alt: "Hairum" },
