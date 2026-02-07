@@ -473,9 +473,10 @@ export default function Home() {
 
       <section
         id="portfolio"
-        className="relative min-h-screen w-full bg-[#33528e] flex items-center justify-center py-12 md:py-24 px-6 md:px-20 z-40 overflow-hidden"
+        className="relative min-h-screen w-full bg-[#33528e] flex items-center justify-center py-10 sm:py-20 px-6 md:px-20 z-40 overflow-hidden"
       >
-        <div className="max-w-7xl w-full flex flex-col md:flex-row gap-10 md:gap-16 items-center">
+        <div className="max-w-7xl w-full flex flex-col md:flex-row gap-0 md:gap-16 items-center">
+          {/* BAGIAN TEKS */}
           <div className="flex flex-col text-center md:text-left md:w-1/2 items-center md:items-start z-20">
             <h2
               className={`text-5xl sm:text-7xl lg:text-8xl uppercase tracking-tighter text-orange-400 ${Gerhaus.className} leading-[0.85]`}
@@ -488,14 +489,14 @@ export default function Home() {
             <div className="h-[2px] w-20 bg-white/30 hidden md:block my-6" />
 
             <p
-              className={`text-base sm:text-lg md:text-xl leading-relaxed opacity-90 max-w-md ${quicksand.className} mt-6 mx-auto md:mx-0`}
+              className={`text-base sm:text-lg md:text-xl leading-relaxed opacity-90 max-w-md ${quicksand.className} mt-4 mx-auto md:mx-0`}
             >
               A curated selection of my most impactful works, ranging from{" "}
               <b className="text-white">Brand Identity</b> to{" "}
               <b className="text-white">Motion Graphics</b>.
             </p>
 
-            <Link href="/projects" className="mt-8">
+            <Link href="/projects" className="mt-6 mb-4 md:mb-0">
               <button
                 className={`group relative px-8 py-4 bg-orange-400 text-blue-900 font-bold rounded-full overflow-hidden transition-all duration-300 hover:pr-12 active:scale-95 ${quicksand.className} text-sm sm:text-base`}
               >
@@ -508,12 +509,15 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="relative w-full md:w-1/2 flex justify-center items-center mt-6 md:mt-0">
+          {/* BAGIAN CARDSWAP - DIBUAT RAPAT */}
+          <div className="relative w-full md:w-1/2 flex justify-center items-start md:items-center">
             <div className="absolute inset-0 bg-orange-400/10 blur-[60px] md:blur-[100px] rounded-full pointer-events-none" />
-            <div className="relative z-10 w-full max-w-[260px] md:max-w-[320px] h-[350px] md:h-[400px]">
+
+            {/* Container ini sekarang menggunakan h-[300px] di mobile agar tidak ada gap biru besar */}
+            <div className="relative z-10 w-full max-w-[260px] md:max-w-[320px] h-[300px] md:h-[450px]">
               <CardSwap
                 cardDistance={30}
-                verticalDistance={40}
+                verticalDistance={35}
                 delay={5000}
                 pauseOnHover={false}
               >
