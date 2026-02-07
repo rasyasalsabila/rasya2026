@@ -473,10 +473,11 @@ export default function Home() {
 
       <section
         id="portfolio"
-        className="relative w-full bg-[#33528e] pt-12 pb-24 px-6 z-40 overflow-hidden"
+        className="relative w-full bg-[#33528e] pt-16 pb-24 px-6 z-40 overflow-hidden"
       >
         <div className="max-w-7xl mx-auto flex flex-col items-center">
-          <div className="flex flex-col text-center items-center z-50 w-full">
+          {/* Bagian Teks: Dipaksa di Tengah & Z-Index Tinggi */}
+          <div className="flex flex-col text-center items-center z-50 w-full relative">
             <h2
               className={`text-5xl sm:text-7xl lg:text-8xl uppercase tracking-tighter text-orange-400 ${Gerhaus.className} leading-[0.85]`}
             >
@@ -490,14 +491,18 @@ export default function Home() {
               A curated selection of my most impactful works.
             </p>
             <Link href="/projects" className="mt-6 mb-2">
-              <button className="px-8 py-4 bg-orange-400 text-blue-900 font-bold rounded-full text-sm sm:text-base">
+              <button className="px-8 py-4 bg-orange-400 text-blue-900 font-bold rounded-full text-sm sm:text-base transition-transform active:scale-95">
                 View All Projects
               </button>
             </Link>
           </div>
 
-          <div className="relative w-full flex justify-center items-start z-30 -mt-8">
-            <div className="relative w-full max-w-[280px] h-[350px] flex justify-center">
+          {/* Bagian CardSwap: Menggunakan Negatif Margin Lebih Berani (-mt-16) */}
+          <div className="relative w-full flex justify-center items-center z-30 -mt-16 sm:mt-0">
+            {/* justify-center: Memastikan kartu di tengah horizontal.
+               -mt-16: Menarik kartu ke atas (khusus mobile).
+            */}
+            <div className="relative w-full max-w-[280px] h-[350px] sm:h-[450px] md:h-[500px] flex justify-center">
               <CardSwap
                 cardDistance={30}
                 verticalDistance={30}
@@ -512,7 +517,7 @@ export default function Home() {
                         alt={`Project ${project.id}`}
                         fill
                         className="object-cover"
-                        sizes="280px"
+                        sizes="(max-width: 768px) 280px, 400px"
                         priority={project.id <= 2}
                       />
                     </div>
