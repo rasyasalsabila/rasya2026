@@ -104,7 +104,7 @@ const FallingText: React.FC<FallingTextProps> = ({
 
     if (!textRef.current) return;
     const wordSpans = textRef.current.querySelectorAll('span');
-    const wordBodies = [...wordSpans].map(elem => {
+    const wordBodies = Array.from(wordSpans).map(elem => {
       const rect = elem.getBoundingClientRect();
 
       const x = rect.left - containerRect.left + rect.width / 2;
