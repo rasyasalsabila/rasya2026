@@ -5,9 +5,9 @@ import dynamic from "next/dynamic";
 import localFont from "next/font/local";
 import { Suspense, useMemo, useEffect, useState } from "react";
 import LogoLoop from "./components/LogoLoop";
-import { Color } from "three";
 import CardSwap, { Card } from "./components/CardSwap";
 import Link from "next/link";
+import LightRays from "./components/LightRays";
 
 const TiltedCard = dynamic(() => import("./components/TiltedCard"), {
   ssr: false,
@@ -16,11 +16,6 @@ const TiltedCard = dynamic(() => import("./components/TiltedCard"), {
 const chocobold = localFont({
   src: "./fonts/Chocobold.ttf",
   weight: "700",
-  display: "swap",
-});
-
-const breathing = localFont({
-  src: "./fonts/Breathing.ttf",
   display: "swap",
 });
 
@@ -77,10 +72,10 @@ export default function Home() {
   }, []);
 
   const items = [
-    { label: "Home", href: "#home" },
-    { label: "About", href: "#about" },
-    { label: "Portfolio", href: "#portfolio" },
-    { label: "Contact", href: "#contact" },
+    { label: "HOME", href: "#home" },
+    { label: "ABOUT", href: "#about" },
+    { label: "PORTFOLIO", href: "#portfolio" },
+    { label: "CONTACT", href: "#contact" },
   ];
 
   const liquidProps = useMemo(
@@ -95,7 +90,7 @@ export default function Home() {
 
   const portfolioTextClass = `
     ${Gerhaus.className} 
-    text-[45px] md:text-[65px] 
+    text-[30px] sm:text-[45px] md:text-[65px]
     text-white normal-case
     drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]
     [webkit-text-stroke:1px_#33528e]
@@ -105,46 +100,53 @@ export default function Home() {
     <main
       className={`relative w-full bg-[#3b5ba5] text-white ${chocobold.className} antialiased`}
     >
-      {/* 1. NAVIGATION SECTION */}
       {mounted && (
-        <nav className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 pointer-events-auto">
-          {/* Perhatikan penggunaan backtick dan kurung kurawal di bawah ini */}
+        <nav className="fixed top-2 sm:top-4 left-0 right-0 z-50 flex justify-center px-2 sm:px-4 pointer-events-auto">
           <div
-            className={`max-w-fit bg-white/10 backdrop-blur-lg border border-white/20 rounded-full px-2 py-1 shadow-lg ${Gerhaus.className}`}
+            className={`w-full max-w-[95%] sm:max-w-fit bg-white/10 backdrop-blur-lg border border-white/20 rounded-full px-3 sm:px-4 py-2 sm:py-1 shadow-lg ${Gerhaus.className}`}
           >
-            <GooeyNav items={items} />
+            <div className="flex justify-around items-center w-full">
+              {items.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="text-[10px] xs:text-xs sm:text-sm md:text-base text-white/90 hover:text-white transition-colors duration-300 px-1 sm:px-2 py-1 rounded-full hover:bg-white/10"
+                >
+                  {item.label}
+                </a>
+              ))}
+            </div>
           </div>
         </nav>
       )}
 
-      {/* 2. HERO SECTION */}
+      <div className="fixed inset-0 z-0 opacity-20 pointer-events-none">
+        <Suspense fallback={null}>
+          <LiquidEther {...liquidProps} />
+        </Suspense>
+      </div>
+
       <section
         id="home"
-        className="relative h-screen w-full overflow-hidden flex flex-col justify-center items-center"
+        className="relative h-screen w-full overflow-hidden flex flex-col justify-center items-center px-4"
       >
-        <div className="fixed inset-0 z-0 opacity-20 pointer-events-none">
-          <Suspense fallback={null}>
-            <LiquidEther {...liquidProps} />
-          </Suspense>
-        </div>
-
         <div className="relative z-10 w-full flex flex-col justify-center items-center select-none pointer-events-none">
           <h1 className="flex flex-col leading-[0.7] tracking-[-0.05em] uppercase text-center">
-            <span className="text-[22vw] md:text-[200px] opacity-90">
+            <span className="text-[18vw] sm:text-[22vw] md:text-[200px] opacity-90">
               Graphic
             </span>
-            <span className="text-[22vw] md:text-[200px] opacity-90">
+            <span className="text-[18vw] sm:text-[22vw] md:text-[200px] opacity-90">
               Designer
             </span>
           </h1>
         </div>
 
-        <div className="absolute inset-x-0 bottom-[90px] md:bottom-[150px] z-20 pointer-events-none">
+        <div className="absolute inset-x-0 bottom-[70px] sm:bottom-[90px] md:bottom-[150px] z-20 pointer-events-none px-4">
           <Suspense fallback={null}>
             <CurvedLoop
               marqueeText="Portfolio ✦ Rasya ✦ Portfolio ✦ Rasya ✦ Portfolio ✦ Rasya ✦"
               speed={1.5}
-              curveAmount={12}
+              curveAmount={8}
               direction="right"
               interactive={false}
               className={portfolioTextClass}
@@ -152,133 +154,122 @@ export default function Home() {
           </Suspense>
         </div>
 
-        {/* Gradasi halus untuk menyatukan transisi */}
-        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#3b5ba5] to-transparent z-25 pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-32 sm:h-48 bg-gradient-to-t from-[#3b5ba5] to-transparent z-25 pointer-events-none" />
       </section>
 
-      {/* 3. ABOUT SECTION */}
       <section
         id="about"
-        className="relative min-h-auto w-full bg-[#3b5ba5] flex flex-col items-center justify-start p-10 z-40"
+        className="relative min-h-auto w-full bg-[#3b5ba5] flex flex-col items-center justify-start p-4 sm:p-6 md:p-10 z-40"
       >
-        {/* CONTAINER TILTED CARD YANG MENEMBUS KE ATAS (HOME) */}
-        <div className="relative z-50 flex flex-row justify-center items-center gap-6 md:gap-5 -mt-[25vh] md:-mt-[35vh] mb-24 px-4">
-          {/* Foto 1 */}
+        <div className="relative z-50 flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 md:gap-5 -mt-[15vh] sm:-mt-[25vh] md:-mt-[35vh] mb-16 sm:mb-24 px-2">
           <TiltedCard
             imageSrc="/images/r1.jpg"
             altText="Project 1"
             captionText="Hello"
-            containerHeight="400px"
-            containerWidth="300px"
-            imageHeight="400px"
-            imageWidth="300px"
-            rotateAmplitude={12}
+            containerHeight="300px"
+            containerWidth="220px"
+            imageHeight="300px"
+            imageWidth="220px"
+            rotateAmplitude={8}
             scaleOnHover={1.05}
             showMobileWarning={false}
           />
 
-          {/* Foto 2 */}
           <TiltedCard
             imageSrc="/images/r2.jpg"
             altText="Project 2"
             captionText="I'm"
-            containerHeight="400px"
-            containerWidth="300px"
-            imageHeight="400px"
-            imageWidth="300px"
-            rotateAmplitude={12}
+            containerHeight="300px"
+            containerWidth="220px"
+            imageHeight="300px"
+            imageWidth="220px"
+            rotateAmplitude={8}
             scaleOnHover={1.05}
             showMobileWarning={false}
           />
 
-          {/* Foto 3 */}
           <TiltedCard
             imageSrc="/images/r3.jpg"
             altText="Project 3"
             captionText="Rasya"
-            containerHeight="400px"
-            containerWidth="300px"
-            imageHeight="400px"
-            imageWidth="300px"
-            rotateAmplitude={12}
+            containerHeight="300px"
+            containerWidth="220px"
+            imageHeight="300px"
+            imageWidth="220px"
+            rotateAmplitude={8}
             scaleOnHover={1.05}
             showMobileWarning={false}
           />
         </div>
 
-        {/* KONTEN ABOUT ME */}
-        <div className="max-w-4xl text-center mb-16">
-          <h2 className={`text-5xl mb-8 uppercase ${Gerhaus.className}`}>
+        <div className="max-w-4xl text-center mb-12 sm:mb-16 px-4">
+          <h2
+            className={`text-3xl sm:text-4xl md:text-5xl mb-6 sm:mb-8 uppercase ${Gerhaus.className}`}
+          >
             About Me
           </h2>
           <p
-            className={`text-xl leading-relaxed opacity-80 ${quicksand.className}`}
+            className={`text-base sm:text-lg md:text-xl leading-relaxed opacity-80 ${quicksand.className}`}
           >
             A Graphic Designer with a strong foundation in Visual Communication
-            <br />
+            <br className="hidden sm:block" />
             Design academic background. Throughout my career, I have worked on
-            <br />
+            <br className="hidden sm:block" />
             <b className="text-orange-400 font-bold opacity-100 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">
               Social Media, Brand Identity, Packaging, and Illustration.
             </b>
           </p>
 
-          {/* TOOLSET SKILLS SECTION - Sesuai Gambar Referensi */}
-          <div className="mt-12 flex flex-col items-center gap-4">
+          <div className="mt-8 sm:mt-12 flex flex-col items-center gap-3 sm:gap-4">
             <h3
-              className={`uppercase tracking-widest text-sm font-bold ${quicksand.className}`}
+              className={`uppercase tracking-widest text-xs sm:text-sm font-bold ${quicksand.className}`}
             >
               Toolset Skills
             </h3>
-            <div className="flex flex-wrap justify-center gap-6">
-              {/* Icon Photoshop */}
+            <div className="flex flex-wrap justify-center gap-3 sm:gap-6">
               <div className="group relative">
                 <Image
                   src="/images/logo/photoshop.png"
                   alt="Photoshop"
-                  width={50}
-                  height={50}
-                  className="grayscale transition-all duration-300 group-hover:grayscale-0 group-hover:scale-110 drop-shadow-md"
+                  width={40}
+                  height={40}
+                  className="grayscale transition-all duration-300 group-hover:grayscale-0 group-hover:scale-110 drop-shadow-md w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12"
                 />
               </div>
-              {/* Icon Illustrator */}
               <div className="group relative">
                 <Image
                   src="/images/logo/illustrator.png"
                   alt="Illustrator"
-                  width={50}
-                  height={50}
-                  className="grayscale transition-all duration-300 group-hover:grayscale-0 group-hover:scale-110 drop-shadow-md"
+                  width={40}
+                  height={40}
+                  className="grayscale transition-all duration-300 group-hover:grayscale-0 group-hover:scale-110 drop-shadow-md w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12"
                 />
               </div>
-              {/* Icon Figma */}
               <div className="group relative">
                 <Image
                   src="/images/logo/figma.png"
                   alt="Figma"
-                  width={50}
-                  height={50}
-                  className="grayscale transition-all duration-300 group-hover:grayscale-0 group-hover:scale-110 drop-shadow-md"
+                  width={40}
+                  height={40}
+                  className="grayscale transition-all duration-300 group-hover:grayscale-0 group-hover:scale-110 drop-shadow-md w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12"
                 />
               </div>
-              {/* Icon Canva */}
               <div className="group relative">
                 <Image
                   src="/images/logo/canva.png"
                   alt="Canva"
-                  width={50}
-                  height={50}
-                  className="grayscale transition-all duration-300 group-hover:grayscale-0 group-hover:scale-110 drop-shadow-md"
+                  width={40}
+                  height={40}
+                  className="grayscale transition-all duration-300 group-hover:grayscale-0 group-hover:scale-110 drop-shadow-md w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12"
                 />
               </div>
-              {/* Icon Premiere */}
               <div className="group relative">
                 <Image
                   src="/images/logo/premiere.png"
                   alt="Premiere Pro"
-                  width={50}
-                  height={50}
-                  className="grayscale transition-all duration-300 group-hover:grayscale-0 group-hover:scale-110 drop-shadow-md"
+                  width={40}
+                  height={40}
+                  className="grayscale transition-all duration-300 group-hover:grayscale-0 group-hover:scale-110 drop-shadow-md w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12"
                 />
               </div>
             </div>
@@ -286,47 +277,45 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3.5 WORK EXPERIENCE SECTION */}
       <section
         id="experience"
-        className="relative min-h-auto w-full bg-[#3b5ba5] flex flex-col items-center py-20 px-6 z-40"
+        className="relative min-h-auto w-full bg-[#3b5ba5] flex flex-col items-center py-12 sm:py-16 md:py-20 px-4 sm:px-6 z-40"
       >
         <div className="max-w-6xl w-full">
-          {/* Header Section dengan Aksen Garis */}
-
-          <div className="flex items-center gap-4 mb-16 justify-center md:justify-start">
+          <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mb-10 sm:mb-16">
             <h2
-              className={`text-5xl uppercase tracking-tighter ${Gerhaus.className}`}
+              className={`text-3xl sm:text-4xl md:text-5xl uppercase tracking-tighter ${Gerhaus.className} text-center sm:text-left`}
             >
               Work Experience
             </h2>
-            <div className="h-[2px] flex-grow bg-gradient-to-r from-orange-400 to-transparent hidden md:block" />
+            <div className="h-[2px] w-full sm:w-0 sm:flex-grow bg-gradient-to-r from-orange-400 to-transparent hidden sm:block" />
           </div>
 
-          <div className="relative border-l-2 border-dashed border-orange-400/50 ml-4 md:ml-8 pl-8 md:pl-12 space-y-12">
-            {/* NEW: UPartners Venture Studio */}
+          <div className="relative border-l-2 border-dashed border-orange-400/50 ml-3 sm:ml-4 md:ml-8 pl-4 sm:pl-6 md:pl-12 space-y-8 sm:space-y-12">
             <div className="relative group">
-              <div className="absolute -left-[41px] md:-left-[57px] top-0 w-4 h-4 rounded-full bg-orange-400 border-4 border-[#3b5ba5] group-hover:scale-150 transition-transform duration-300 shadow-[0_0_20px_rgba(251,146,60,1)]" />
+              <div className="absolute -left-[29px] sm:-left-[33px] md:-left-[57px] top-0 w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-orange-400 border-3 sm:border-4 border-[#3b5ba5] group-hover:scale-150 transition-transform duration-300 shadow-[0_0_15px_rgba(251,146,60,0.8)]" />
 
-              <div className="bg-white/10 backdrop-blur-xl border border-orange-400/30 rounded-3xl p-8 hover:bg-white/15 transition-all duration-500 hover:-translate-y-2 ring-1 ring-white/10">
-                <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
-                  <div className="flex items-center gap-3">
-                    <h3 className="text-3xl text-orange-400">
+              <div className="bg-white/10 backdrop-blur-xl border border-orange-400/30 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 hover:bg-white/15 transition-all duration-500 hover:-translate-y-2 ring-1 ring-white/10">
+                <div className="flex flex-col md:flex-row md:items-center justify-between mb-3 sm:mb-4 gap-2">
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <h3 className="text-xl sm:text-2xl md:text-3xl text-orange-400">
                       Graphic Designer
                     </h3>
-                    <span className="bg-orange-400/20 text-orange-300 text-[10px] px-2 py-0.5 rounded-full border border-orange-400/30 uppercase tracking-widest">
+                    <span className="bg-orange-400/20 text-orange-300 text-[8px] sm:text-[10px] px-1.5 sm:px-2 py-0.5 rounded-full border border-orange-400/30 uppercase tracking-widest">
                       Current
                     </span>
                   </div>
-                  <span className={`text-sm opacity-60 ${quicksand.className}`}>
+                  <span
+                    className={`text-xs sm:text-sm opacity-60 ${quicksand.className}`}
+                  >
                     2025 - Present
                   </span>
                 </div>
-                <h4 className="text-xl mb-4 text-white/90">
+                <h4 className="text-base sm:text-lg md:text-xl mb-3 sm:mb-4 text-white/90">
                   at UPartners Venture Studio
                 </h4>
                 <ul
-                  className={`space-y-2 opacity-80 text-lg ${quicksand.className} list-disc list-inside`}
+                  className={`space-y-1 sm:space-y-2 opacity-80 text-sm sm:text-base md:text-lg ${quicksand.className} list-disc list-inside pl-2`}
                 >
                   <li>
                     Visual identity and creative direction for venture-backed
@@ -347,23 +336,26 @@ export default function Home() {
                 </ul>
               </div>
             </div>
-            {/* 1. Judydoll Indonesia */}
-            <div className="relative group">
-              {/* Dot Timeline */}
-              <div className="absolute -left-[41px] md:-left-[57px] top-0 w-4 h-4 rounded-full bg-orange-400 border-4 border-[#3b5ba5] group-hover:scale-150 transition-transform duration-300 shadow-[0_0_15px_rgba(251,146,60,0.8)]" />
 
-              <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition-all duration-500 hover:-translate-y-2">
-                <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
-                  <h3 className="text-3xl text-orange-400">Graphic Designer</h3>
-                  <span className={`text-sm opacity-60 ${quicksand.className}`}>
+            <div className="relative group">
+              <div className="absolute -left-[29px] sm:-left-[33px] md:-left-[57px] top-0 w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-orange-400 border-3 sm:border-4 border-[#3b5ba5] group-hover:scale-150 transition-transform duration-300 shadow-[0_0_15px_rgba(251,146,60,0.8)]" />
+
+              <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 hover:bg-white/10 transition-all duration-500 hover:-translate-y-2">
+                <div className="flex flex-col md:flex-row md:items-center justify-between mb-3 sm:mb-4 gap-2">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl text-orange-400">
+                    Graphic Designer
+                  </h3>
+                  <span
+                    className={`text-xs sm:text-sm opacity-60 ${quicksand.className}`}
+                  >
                     May 2025 - Present
                   </span>
                 </div>
-                <h4 className="text-xl mb-4 text-white/90">
+                <h4 className="text-base sm:text-lg md:text-xl mb-3 sm:mb-4 text-white/90">
                   at Judydoll Indonesia
                 </h4>
                 <ul
-                  className={`space-y-2 opacity-80 text-lg ${quicksand.className} list-disc list-inside`}
+                  className={`space-y-1 sm:space-y-2 opacity-80 text-sm sm:text-base md:text-lg ${quicksand.className} list-disc list-inside pl-2`}
                 >
                   <li>Photo editing for color grading and skin correction.</li>
                   <li>
@@ -381,20 +373,25 @@ export default function Home() {
               </div>
             </div>
 
-            {/* 2. Hairum */}
             <div className="relative group">
-              <div className="absolute -left-[41px] md:-left-[57px] top-0 w-4 h-4 rounded-full bg-orange-400 border-4 border-[#3b5ba5] group-hover:scale-150 transition-transform duration-300 shadow-[0_0_15px_rgba(251,146,60,0.8)]" />
+              <div className="absolute -left-[29px] sm:-left-[33px] md:-left-[57px] top-0 w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-orange-400 border-3 sm:border-4 border-[#3b5ba5] group-hover:scale-150 transition-transform duration-300 shadow-[0_0_15px_rgba(251,146,60,0.8)]" />
 
-              <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition-all duration-500 hover:-translate-y-2">
-                <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
-                  <h3 className="text-3xl text-orange-400">Graphic Designer</h3>
-                  <span className={`text-sm opacity-60 ${quicksand.className}`}>
+              <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 hover:bg-white/10 transition-all duration-500 hover:-translate-y-2">
+                <div className="flex flex-col md:flex-row md:items-center justify-between mb-3 sm:mb-4 gap-2">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl text-orange-400">
+                    Graphic Designer
+                  </h3>
+                  <span
+                    className={`text-xs sm:text-sm opacity-60 ${quicksand.className}`}
+                  >
                     Dec 2023 - Present
                   </span>
                 </div>
-                <h4 className="text-xl mb-4 text-white/90">at Hairum</h4>
+                <h4 className="text-base sm:text-lg md:text-xl mb-3 sm:mb-4 text-white/90">
+                  at Hairum
+                </h4>
                 <ul
-                  className={`space-y-2 opacity-80 text-lg ${quicksand.className} list-disc list-inside`}
+                  className={`space-y-1 sm:space-y-2 opacity-80 text-sm sm:text-base md:text-lg ${quicksand.className} list-disc list-inside pl-2`}
                 >
                   <li>
                     Designed 10 distinctive Shopee e-commerce covers monthly.
@@ -409,24 +406,25 @@ export default function Home() {
               </div>
             </div>
 
-            {/* 3. PT Good Sale Tech */}
             <div className="relative group">
-              <div className="absolute -left-[41px] md:-left-[57px] top-0 w-4 h-4 rounded-full bg-orange-400 border-4 border-[#3b5ba5] group-hover:scale-150 transition-transform duration-300 shadow-[0_0_15px_rgba(251,146,60,0.8)]" />
+              <div className="absolute -left-[29px] sm:-left-[33px] md:-left-[57px] top-0 w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-orange-400 border-3 sm:border-4 border-[#3b5ba5] group-hover:scale-150 transition-transform duration-300 shadow-[0_0_15px_rgba(251,146,60,0.8)]" />
 
-              <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition-all duration-500 hover:-translate-y-2">
-                <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
-                  <h3 className="text-3xl text-orange-400">
+              <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 hover:bg-white/10 transition-all duration-500 hover:-translate-y-2">
+                <div className="flex flex-col md:flex-row md:items-center justify-between mb-3 sm:mb-4 gap-2">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl text-orange-400">
                     Graphic Designer Intern
                   </h3>
-                  <span className={`text-sm opacity-60 ${quicksand.className}`}>
+                  <span
+                    className={`text-xs sm:text-sm opacity-60 ${quicksand.className}`}
+                  >
                     Jan 2025 - May 2025
                   </span>
                 </div>
-                <h4 className="text-xl mb-4 text-white/90">
+                <h4 className="text-base sm:text-lg md:text-xl mb-3 sm:mb-4 text-white/90">
                   at PT Good Sale Tech
                 </h4>
                 <ul
-                  className={`space-y-2 opacity-80 text-lg ${quicksand.className} list-disc list-inside`}
+                  className={`space-y-1 sm:space-y-2 opacity-80 text-sm sm:text-base md:text-lg ${quicksand.className} list-disc list-inside pl-2`}
                 >
                   <li>
                     Designed content for 4 in-house brands (Sea Makeup, Acnaway,
@@ -447,19 +445,19 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative min-h-auto w-auto bg-[#3b5ba5] flex flex-col items-center justify-center gap-10 p-10 z-40">
-        <div className="w-full max-w-5xl h-[230px] relative overflow-hidden">
+      <section className="relative min-h-auto w-auto bg-[#3b5ba5] flex flex-col items-center justify-center gap-6 sm:gap-8 md:gap-10 p-4 sm:p-6 md:p-10 z-40">
+        <div className="w-full max-w-5xl h-[180px] sm:h-[200px] md:h-[230px] relative overflow-hidden">
           <h1
-            className={`text-3xl md:text-1xl text-white justify-center flex mb-6 uppercase tracking-wider z-10 relative ${Gerhaus.className}`}
+            className={`text-xl sm:text-2xl md:text-3xl text-white justify-center flex mb-4 sm:mb-6 uppercase tracking-wider z-10 relative ${Gerhaus.className}`}
           >
             BRAND HANDLED
           </h1>
           <LogoLoop
             logos={techLogos}
-            speed={50}
+            speed={40}
             direction="left"
-            logoHeight={80}
-            gap={60}
+            logoHeight={60}
+            gap={40}
             hoverSpeed={0}
             fadeOut
             fadeOutColor="#3b5ba5"
@@ -469,41 +467,39 @@ export default function Home() {
 
       <section
         id="portfolio"
-        className="relative min-h-auto w-full bg-[#33528e] flex items-center justify-center py-20 px-6 md:px-20 z-40 overflow-hidden"
+        className="relative min-h-auto w-full bg-[#33528e] flex items-center justify-center py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-20 z-40 overflow-hidden"
       >
-        <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          {/* SISI KIRI: DESKRIPSI KONTEN */}
-          <div className="flex flex-col space-y-6 text-center md:text-left order-2 md:order-1">
+        <div className="max-w-7xl w-full flex flex-col md:flex-row gap-8 sm:gap-12 md:gap-16 items-center">
+          <div className="flex flex-col space-y-4 sm:space-y-6 text-center md:text-left md:w-1/2">
             <h2
-              className={`text-6xl md:text-8xl uppercase tracking-tighter text-orange-400 ${Gerhaus.className}`}
+              className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase tracking-tighter text-orange-400 ${Gerhaus.className} leading-[0.9]`}
             >
-              Featured
+              FEAT
               <br />
-              Projects
+              PROJECTS
             </h2>
 
-            <div className="h-[2px] w-24 bg-white/30 hidden md:block" />
+            <div className="h-[2px] w-16 sm:w-20 md:w-24 bg-white/30 hidden md:block" />
 
             <p
-              className={`text-xl md:text-2xl leading-relaxed opacity-90 max-w-md ${quicksand.className}`}
+              className={`text-base sm:text-lg md:text-xl leading-relaxed opacity-90 max-w-md ${quicksand.className} mt-4`}
             >
-              A curated selection of my most impactful works, ranging from
-              <b className="text-white"> Brand Identity</b> to
-              <b className="text-white"> Motion Graphics</b>. Each project is
+              A curated selection of my most impactful works, ranging from{" "}
+              <b className="text-white">Brand Identity</b> to{" "}
+              <b className="text-white">Motion Graphics</b>. Each project is
               crafted with precision to deliver unique visual experiences.
             </p>
 
-            {/* Tombol View All Projects */}
             <Link href="/projects">
               <button
                 className={`
-    group relative px-8 py-4 bg-orange-400 text-blue-900 font-bold rounded-full 
-    overflow-hidden transition-all duration-300 hover:pr-12 active:scale-95
-    ${quicksand.className}
-  `}
+                  group relative px-6 sm:px-8 py-3 sm:py-4 bg-orange-400 text-blue-900 font-bold rounded-full 
+                  overflow-hidden transition-all duration-300 hover:pr-10 sm:hover:pr-12 active:scale-95
+                  ${quicksand.className} text-sm sm:text-base mt-6 w-fit mx-auto md:mx-0
+                `}
               >
                 <span className="relative z-10">View All 22 Projects</span>
-                <span className="absolute right-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                <span className="absolute right-3 sm:right-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
                   →
                 </span>
                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
@@ -511,35 +507,33 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* SISI KANAN: KONTEN BERGERAK (CARD SWAP) */}
-          <div className="relative flex justify-center items-center order-1 md:order-2">
-            {/* Glow Effect di belakang kartu agar lebih bagus */}
-            <div className="absolute inset-0 bg-orange-400/10 blur-[100px] rounded-full pointer-events-none" />
+          <div className="relative flex justify-center items-center md:w-1/2">
+            <div className="absolute inset-0 bg-orange-400/10 blur-[60px] sm:blur-[80px] md:blur-[100px] rounded-full pointer-events-none" />
 
             <div
               className="relative z-10"
               style={{
-                height: "600px",
+                height: "400px",
                 width: "100%",
-                maxWidth: "450px", // Sedikit diperkecil agar proporsional dengan teks
+                maxWidth: "300px",
               }}
             >
               <CardSwap
-                cardDistance={60}
-                verticalDistance={70}
+                cardDistance={40}
+                verticalDistance={50}
                 delay={5000}
                 pauseOnHover={false}
               >
                 {projects.map((project) => (
                   <Card key={project.id}>
-                    <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+                    <div className="relative w-full h-full rounded-xl sm:rounded-2xl overflow-hidden shadow-xl sm:shadow-2xl border border-white/10">
                       <Image
                         src={project.src}
                         alt={`Project ${project.id}`}
                         fill
                         className="object-cover"
-                        sizes="(max-width: 768px) 100vw, 500px"
-                        priority={project.id <= 2} // Prioritaskan loading 2 gambar pertama
+                        sizes="(max-width: 768px) 100vw, 300px"
+                        priority={project.id <= 2}
                       />
                     </div>
                   </Card>
@@ -550,20 +544,100 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. CONTACT SECTION */}
       <section
         id="contact"
-        className="relative h-[60vh] w-full bg-[#2a4375] flex items-center justify-center z-40"
+        className="relative min-h-screen w-full bg-[#2a4375] flex flex-col items-center justify-between py-12 sm:py-16 md:py-20 px-4 sm:px-6 z-40 overflow-hidden"
+        style={{
+          ["--brand-magenta" as any]: "#d03a92",
+        }}
       >
-        <div className="text-center">
-          <h2 className="text-5xl mb-4 uppercase">Get In Touch</h2>
-          <p className="text-lg opacity-70 mb-8">Email: your@email.com</p>
-          <div className="flex gap-6 justify-center">
-            <span className="cursor-pointer hover:text-[#FF9FFC]">
-              Instagram
+        <style jsx>{`
+          section::selection {
+            background: #d03a92;
+            color: white;
+          }
+        `}</style>
+
+        <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
+          <LightRays
+            raysOrigin="top-center"
+            raysColor="#d03a92"
+            raysSpeed={0.8}
+            lightSpread={0.6}
+            rayLength={3}
+            followMouse={true}
+            mouseInfluence={0.05}
+            className="custom-rays"
+          />
+        </div>
+
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[200%] sm:w-[150%] h-[300px] sm:h-[400px] md:h-[500px] bg-[#d03a92]/10 blur-[80px] sm:blur-[100px] md:blur-[120px] rounded-full pointer-events-none z-0" />
+
+        <div className="relative z-10 text-center flex flex-col items-center mt-auto mb-auto">
+          <h2
+            className={`text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-9xl uppercase tracking-tighter mb-3 sm:mb-4 transition-all duration-700 ${Gerhaus.className}`}
+          >
+            Let's{" "}
+            <span
+              style={{
+                color: "#d03a92",
+                textShadow: "0 0 20px rgba(208, 58, 146, 0.4)",
+              }}
+            >
+              Talk
             </span>
-            <span className="cursor-pointer hover:text-[#FF9FFC]">Behance</span>
+          </h2>
+          <p
+            className={`text-base sm:text-lg md:text-xl lg:text-2xl opacity-60 max-w-xl mx-auto mb-10 sm:mb-12 md:mb-16 px-4 ${quicksand.className}`}
+          >
+            Have a project in mind or just want to say hi? My inbox is always
+            open.
+          </p>
+
+          <div
+            className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 lg:gap-16 ${Gerhaus.className} text-lg sm:text-xl md:text-2xl uppercase tracking-[0.1em] sm:tracking-[0.2em] px-4`}
+          >
+            {[
+              {
+                name: "Instagram",
+                href: "https://www.instagram.com/rasya.sals/",
+              },
+              {
+                name: "Behance",
+                href: "https://www.behance.net/rasyasalsabila",
+              },
+              {
+                name: "LinkedIn",
+                href: "https://www.linkedin.com/in/rasya-salsabila-haffaf/",
+              },
+              { name: "Gmail", href: "mailto:rasyasalsabila253@gmail.com" },
+            ].map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative group transition-all duration-300 hover:scale-105 sm:hover:scale-110"
+              >
+                <span className="group-hover:text-[#d03a92] transition-colors duration-300 text-sm sm:text-base md:text-lg lg:text-xl">
+                  {link.name}
+                </span>
+
+                <span className="absolute -bottom-1 sm:-bottom-2 left-0 w-0 h-[1px] sm:h-[2px] bg-[#d03a92] transition-all duration-300 group-hover:w-full shadow-[0_0_4px_#d03a92] sm:shadow-[0_0_8px_#d03a92]" />
+              </a>
+            ))}
           </div>
+        </div>
+
+        <div
+          className={`relative z-10 w-full max-w-7xl border-t border-white/10 pt-6 sm:pt-8 md:pt-10 mt-12 sm:mt-16 md:mt-20 flex flex-col md:flex-row justify-between items-center opacity-40 text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.4em] px-4 ${quicksand.className}`}
+        >
+          <p className="mb-2 md:mb-0">
+            © 2026 Rasya Salsabila. All Rights Reserved.
+          </p>
+          <p className="hover:opacity-100 transition-opacity cursor-default">
+            Handcrafted with Passion
+          </p>
         </div>
       </section>
     </main>

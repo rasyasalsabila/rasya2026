@@ -10,37 +10,32 @@ const DomeGallery = dynamic(() => import("../components/DomeGallery"), {
   ssr: false,
 });
 
-// Menghasilkan otomatis 22 project dengan deskripsi
 const projects = Array.from({ length: 22 }, (_, i) => ({
   id: i + 1,
   src: `/portfolio/${i + 1}.jpg`,
-  // Tambahkan deskripsi spesifik di sini
   alt: `Project Highlight #${i + 1} - Visual Design Concept 2026`,
 }));
 
 export default function ProjectsPage() {
   return (
     <main className="relative w-full h-screen bg-[#33528e] overflow-hidden">
-      {/* UI Navigation */}
-      <div className="absolute top-10 left-10 z-50">
+      <div className="absolute top-4 sm:top-6 md:top-10 left-4 sm:left-6 md:left-10 z-50">
         <Link
           href="/"
-          /* Mengubah text-orange-400 menjadi warna custom #d03a92 */
-          className={`group flex items-center gap-4 transition-all duration-300 ${quicksand.className}`}
-          style={{ color: "#d03a92" }} // Menggunakan inline style agar warna presisi
+          className={`group flex items-center gap-2 sm:gap-3 md:gap-4 transition-all duration-300 ${quicksand.className}`}
+          style={{ color: "#d03a92" }}
         >
           <div
-            className="flex items-center justify-center w-12 h-12 rounded-full border-2 transition-all font-bold group-hover:bg-[#d03a92] group-hover:text-white"
-            style={{ borderColor: "#d03a92" }} // Garis lingkaran dengan warna baru
+            className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full border-2 transition-all font-bold group-hover:bg-[#d03a92] group-hover:text-white text-sm sm:text-base md:text-lg"
+            style={{ borderColor: "#d03a92" }}
           >
             ←
           </div>
           <div className="flex flex-col">
-            <span className="uppercase tracking-[0.3em] font-bold text-xs">
+            <span className="uppercase tracking-[0.2em] sm:tracking-[0.3em] font-bold text-[10px] xs:text-xs">
               Go Back
             </span>
-            {/* Menambahkan span untuk teks "Home" agar terlihat serasi */}
-            <span className="text-white text-lg font-light group-hover:text-[#d03a92] transition-colors">
+            <span className="text-white text-sm sm:text-base md:text-lg font-light group-hover:text-[#d03a92] transition-colors">
               Home
             </span>
           </div>
@@ -50,24 +45,22 @@ export default function ProjectsPage() {
       <div className="w-full h-full">
         <DomeGallery
           images={projects}
-          fit={0.95} // Memperluas jangkauan kamera galeri
+          fit={0.95}
           minRadius={450}
           maxVerticalRotationDeg={10}
           segments={35}
           dragDampening={2}
           grayscale={false}
-          /* UKURAN GAMBAR SAAT DIKLIK (LEBIH BESAR) */
-          openedImageWidth="90vw" // Menggunakan 90% lebar layar
-          openedImageHeight="85vh" // Menggunakan 85% tinggi layar
+          openedImageWidth="90vw"
+          openedImageHeight="85vh"
           imageBorderRadius="20px"
           openedImageBorderRadius="12px"
         />
       </div>
 
-      {/* Deskripsi Overlay (Petunjuk) */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
+      <div className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none px-4">
         <p
-          className={`text-white/40 text-[10px] uppercase tracking-[0.6em] text-center ${quicksand.className}`}
+          className={`text-white/40 text-[8px] xs:text-[10px] uppercase tracking-[0.4em] sm:tracking-[0.6em] text-center ${quicksand.className} whitespace-nowrap`}
         >
           Click any project to expand & see details
         </p>
